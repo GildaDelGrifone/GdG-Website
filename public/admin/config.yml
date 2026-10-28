@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: Destard20/GdG-Website
+  repo: GildaDelGrifone/GdG-Website
   branch: main
   # base_url: https://URL-DEL-WORKER-OAUTH # opzionale, vedi README
 
