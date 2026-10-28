@@ -1,0 +1,39 @@
+---
+import site from '../data/site.json';
+import OpeningHours from './OpeningHours.astro';
+import TelegramButton from './TelegramButton.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container cols">
+    <div>
+      <h3>{site.name}</h3>
+      <p class="muted">{site.tagline}</p>
+      <p>
+        <a href={site.mapUrl} rel="noopener">{site.address}</a><br />
+        <a href={`mailto:${site.email}`}>{site.email}</a><br />
+        <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
+      </p>
+      <TelegramButton />
+    </div>
+    <div>
+      <h3>Orari</h3>
+      <OpeningHours compact />
+    </div>
+    <div>
+      <h3>Sostienici</h3>
+      <p class="muted">Quota associativa e donazioni con Satispay.</p>
+      <img src="/satispay.png" alt="QR code Satispay" width="140" height="140" loading="lazy" />
+    </div>
+  </div>
+  <p class="container muted copy">© {year} {site.name}</p>
+</footer>
+
+<style>
+  .site-footer { margin-top: 48px; padding: 40px 0 24px; background: var(--surface); border-top: 1px solid var(--border); }
+  .cols { display: grid; gap: 32px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+  .copy { margin-top: 32px; font-size: 0.85rem; }
+  img { background: #fff; border-radius: 8px; padding: 4px; }
+</style>

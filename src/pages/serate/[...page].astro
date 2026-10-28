@@ -1,0 +1,33 @@
+---
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+export const getStaticPaths = (async ({ paginate }) => {
+  const serate = (await getCollection('serate')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+  return paginate(serate, { pageSize: 12 });
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+---
+
+<BaseLayout title="Serate" description="I resoconti delle serate della Gilda del Grifone: tavoli, giochi e novità.">
+  <div class="container section">
+    <h1>Eventi della serata</h1>
+    <p class="muted">I resoconti delle nostre serate: quali giochi si sono giocati e cosa è successo ai tavoli.</p>
+    {page.data.length ? (
+      <div class="grid">
+        {page.data.map((s) => <ArticleCard href={`/serate/${s.id}`} {...s.data} />)}
+      </div>
+    ) : <p class="muted">Nessuna serata pubblicata.</p>}
+    <nav class="pager" aria-label="Paginazione">
+      {page.url.prev && <a href={page.url.prev}>← Più recenti</a>}
+      {page.url.next && <a href={page.url.next}>Più vecchie →</a>}
+    </nav>
+  </div>
+</BaseLayout>
+
+<style>
+  .pager { display: flex; justify-content: space-between; margin-top: 24px; }
+</style>

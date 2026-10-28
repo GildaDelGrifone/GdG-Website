@@ -1,0 +1,66 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TelegramButton from '../components/TelegramButton.astro';
+import manuali from '../data/manuali.json';
+
+const total = manuali.reduce((n, s) => n + s.titoli.length, 0);
+---
+
+<BaseLayout title="Gioco di ruolo" description="Campagne di gioco di ruolo a Torino e biblioteca di manuali della Gilda del Grifone.">
+  <div class="container section">
+    <h1>Gioco di ruolo</h1>
+    <div class="card how">
+      <h2>Come si gioca</h2>
+      <p>
+        Campagne e one-shot si organizzano sul nostro gruppo Telegram: leggi le proposte dei master e commenta
+        <strong>«prenoto»</strong> per riservare un posto. Se sei un master, puoi proporre la tua campagna nel gruppo.
+        Non c'è quota serale: serve solo la tessera associativa.
+      </p>
+      <TelegramButton />
+    </div>
+
+    <h2 class="lib">Biblioteca dei manuali</h2>
+    <p class="muted">{manuali.length} sistemi, {total} titoli. I soci possono leggerli in sede o prenderli in prestito per due settimane.</p>
+
+    <input type="search" id="q" placeholder="Cerca un sistema o un manuale…" aria-label="Cerca un manuale" />
+    <p id="empty" class="muted" hidden>Nessun risultato.</p>
+
+    <div class="systems">
+      {manuali.map((s) => (
+        <details class="card system" data-text={`${s.sistema} ${s.titoli.join(' ')}`}>
+          <summary><strong>{s.sistema}</strong> <span class="muted">({s.titoli.length})</span></summary>
+          <ul>{s.titoli.map((t) => <li>{t}</li>)}</ul>
+        </details>
+      ))}
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .how { margin: 16px 0 40px; }
+  .lib { margin-top: 0; }
+  #q { width: 100%; max-width: 420px; margin: 8px 0 20px; }
+  .systems { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); align-items: start; }
+  .system { padding: 12px 16px; }
+  summary { cursor: pointer; }
+  ul { margin: 12px 0 0; padding-left: 1.2em; }
+</style>
+
+<script>
+  const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/g, '').toLowerCase();
+  const input = document.getElementById('q') as HTMLInputElement;
+  const empty = document.getElementById('empty')!;
+  const systems = [...document.querySelectorAll<HTMLDetailsElement>('.system')];
+
+  input.addEventListener('input', () => {
+    const q = norm(input.value.trim());
+    let visible = 0;
+    systems.forEach((d) => {
+      const match = !q || norm(d.dataset.text ?? '').includes(q);
+      d.hidden = !match;
+      d.open = !!q && match;
+      if (match) visible++;
+    });
+    empty.hidden = visible > 0;
+  });
+</script>

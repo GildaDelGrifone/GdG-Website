@@ -1,0 +1,59 @@
+---
+import site from '../data/site.json';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/ludoteca', label: 'Ludoteca' },
+  { href: '/serate', label: 'Serate' },
+  { href: '/gdr', label: 'Gioco di ruolo' },
+  { href: '/news', label: 'News' },
+  { href: '/collaborazioni', label: 'Collaborazioni' },
+];
+
+const path = Astro.url.pathname;
+const isActive = (href: string) => (href === '/' ? path === '/' : path.startsWith(href));
+---
+
+<header class="site-header">
+  <div class="container bar">
+    <a href="/" class="brand">
+      <img src="/logo.png" alt="" width="40" height="40" />
+      <span>{site.name}</span>
+    </a>
+    <button class="menu-toggle" aria-expanded="false" aria-controls="nav" aria-label="Apri il menu">☰</button>
+    <nav id="nav" aria-label="Principale">
+      <ul>
+        {links.map((l) => (
+          <li><a href={l.href} aria-current={isActive(l.href) ? 'page' : undefined}>{l.label}</a></li>
+        ))}
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header { position: sticky; top: 0; z-index: 10; background: rgba(18, 18, 18, 0.92); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); }
+  .bar { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 64px; flex-wrap: wrap; }
+  .brand { display: flex; align-items: center; gap: 10px; color: var(--text); text-decoration: none; font-family: var(--font-display); font-weight: 700; }
+  .brand img { border-radius: 8px; }
+  nav ul { display: flex; gap: 4px; list-style: none; margin: 0; padding: 0; }
+  nav a { display: block; padding: 8px 12px; border-radius: 8px; color: var(--muted); text-decoration: none; }
+  nav a:hover, nav a[aria-current='page'] { color: var(--gold); background: var(--surface); }
+  .menu-toggle { display: none; background: none; border: 1px solid var(--border); color: var(--text); border-radius: 8px; font-size: 1.3rem; padding: 4px 12px; cursor: pointer; }
+
+  @media (max-width: 800px) {
+    .menu-toggle { display: block; }
+    nav { display: none; width: 100%; }
+    nav.open { display: block; padding-bottom: 12px; }
+    nav ul { flex-direction: column; }
+  }
+</style>
+
+<script>
+  const toggle = document.querySelector<HTMLButtonElement>('.menu-toggle');
+  const nav = document.getElementById('nav');
+  toggle?.addEventListener('click', () => {
+    const open = nav?.classList.toggle('open') ?? false;
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+</script>

@@ -1,0 +1,18 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleCard from '../../components/ArticleCard.astro';
+
+const news = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+
+<BaseLayout title="News" description="Le ultime novità dalla Gilda del Grifone Torino.">
+  <div class="container section">
+    <h1>News</h1>
+    {news.length ? (
+      <div class="grid">
+        {news.map((n) => <ArticleCard href={`/news/${n.id}`} {...n.data} />)}
+      </div>
+    ) : <p class="muted">Nessuna news pubblicata.</p>}
+  </div>
+</BaseLayout>

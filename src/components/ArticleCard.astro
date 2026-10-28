@@ -1,0 +1,28 @@
+---
+interface Props {
+  href: string;
+  title: string;
+  date: Date;
+  excerpt?: string;
+  cover?: string;
+}
+
+const { href, title, date, excerpt, cover } = Astro.props;
+const dateLabel = date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<a class="card article" href={href}>
+  {cover && <img src={cover} alt="" loading="lazy" />}
+  <time datetime={date.toISOString()}>{dateLabel}</time>
+  <h3>{title}</h3>
+  {excerpt && <p class="muted">{excerpt}</p>}
+</a>
+
+<style>
+  .article { display: block; color: var(--text); text-decoration: none; transition: border-color 0.15s; }
+  .article:hover { border-color: var(--gold); color: var(--text); }
+  img { border-radius: 8px; margin-bottom: 12px; aspect-ratio: 16 / 9; object-fit: cover; width: 100%; }
+  time { font-size: 0.85rem; color: var(--gold); }
+  h3 { margin: 4px 0 8px; font-size: 1.15rem; }
+  p { margin: 0; }
+</style>

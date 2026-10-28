@@ -1,0 +1,73 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<div class:list={['hours', { compact }]} data-hours={JSON.stringify(site.hours)}>
+  <p class="status" aria-live="polite"></p>
+  <ul>
+    {site.hours.map((h) => (
+      <li data-day={h.day} class:list={{ closed: h.closed }}>
+        <span>{h.label}</span>
+        <span>{h.closed ? 'Chiuso' : `${h.open} – ${h.close}`}</span>
+      </li>
+    ))}
+  </ul>
+  <p class="muted note">{site.hoursNote}</p>
+</div>
+
+<style>
+  ul { list-style: none; margin: 0; padding: 0; }
+  li { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  li.closed { color: var(--muted); }
+  li.today { color: var(--gold); font-weight: 700; }
+  .status { font-weight: 700; margin: 0 0 8px; }
+  .status:empty { display: none; }
+  .status.open { color: var(--ok); }
+  .status.shut { color: var(--muted); }
+  .note { font-size: 0.85rem; margin-bottom: 0; }
+  .compact li { padding: 3px 0; font-size: 0.9rem; }
+</style>
+
+<script>
+  // Evidenzia il giorno corrente e mostra se siamo aperti, usando l'ora di Torino.
+  type Hour = { day: number; open?: string; close?: string; closed?: boolean };
+
+  const parts = new Intl.DateTimeFormat('en-GB', {
+    timeZone: 'Europe/Rome',
+    weekday: 'short',
+    hour: '2-digit',
+    minute: '2-digit',
+    hour12: false,
+  }).formatToParts(new Date());
+  const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
+  const dayIndex = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
+  const minutes = (Number(get('hour')) % 24) * 60 + Number(get('minute'));
+  const toMin = (s: string) => {
+    const [h, m] = s.split(':').map(Number);
+    return h * 60 + m;
+  };
+
+  document.querySelectorAll<HTMLElement>('.hours').forEach((el) => {
+    const hours: Hour[] = JSON.parse(el.dataset.hours ?? '[]');
+    el.querySelector(`li[data-day="${dayIndex}"]`)?.classList.add('today');
+    const today = hours.find((h) => h.day === dayIndex);
+    const status = el.querySelector<HTMLElement>('.status');
+    if (!status || !today) return;
+    if (!today.closed && today.open && today.close && minutes >= toMin(today.open) && minutes < toMin(today.close)) {
+      status.textContent = 'Siamo aperti ora!';
+      status.classList.add('open');
+    } else if (!today.closed && today.open && minutes < toMin(today.open)) {
+      status.textContent = `Apriamo oggi alle ${today.open}`;
+      status.classList.add('shut');
+    } else {
+      status.textContent = 'Al momento siamo chiusi';
+      status.classList.add('shut');
+    }
+  });
+</script>

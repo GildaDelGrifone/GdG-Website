@@ -1,0 +1,11 @@
+---
+import site from '../data/site.json';
+
+interface Props {
+  label?: string;
+}
+
+const { label = 'Unisciti al gruppo Telegram' } = Astro.props;
+---
+
+<a class="btn" href={site.telegramUrl} target="_blank" rel="noopener noreferrer">{label}</a>

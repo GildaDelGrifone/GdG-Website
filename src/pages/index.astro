@@ -1,0 +1,71 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import OpeningHours from '../components/OpeningHours.astro';
+import TelegramButton from '../components/TelegramButton.astro';
+import site from '../data/site.json';
+
+const byDate = <T extends { data: { date: Date } }>(a: T, b: T) => b.data.date.valueOf() - a.data.date.valueOf();
+const serate = (await getCollection('serate')).sort(byDate).slice(0, 3);
+const news = (await getCollection('news')).sort(byDate).slice(0, 3);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="container">
+      <img src="/logo.png" alt="Logo della Gilda del Grifone" width="120" height="120" />
+      <h1>{site.tagline}</h1>
+      <p class="lead">
+        La Gilda del Grifone è un'associazione di Torino dedicata ai giochi da tavolo e di ruolo.
+        Oltre 400 giochi in ludoteca, tavoli aperti a tutti e campagne di gioco di ruolo: vieni a provare, ti spieghiamo noi le regole.
+      </p>
+      <TelegramButton />
+    </div>
+  </section>
+
+  <section class="section container info">
+    <div class="card">
+      <h2>Chi siamo</h2>
+      <p>
+        Siamo un luogo di ritrovo per chi ama giocare. Non c'è consumazione minima né quota serale: serve solo la tessera associativa,
+        valida un anno dall'iscrizione. I soci possono anche prendere in prestito giochi e manuali.
+      </p>
+      <p>
+        <a href="/ludoteca">Sfoglia la ludoteca</a> · <a href="/gdr">Manuali di gioco di ruolo</a>
+      </p>
+    </div>
+    <div class="card">
+      <h2>Quando e dove</h2>
+      <OpeningHours />
+      <p><a href={site.mapUrl} rel="noopener">{site.address}</a></p>
+    </div>
+  </section>
+
+  <section class="section container">
+    <h2>Ultime serate</h2>
+    {serate.length ? (
+      <div class="grid">
+        {serate.map((s) => <ArticleCard href={`/serate/${s.id}`} {...s.data} />)}
+      </div>
+    ) : <p class="muted">Nessuna serata pubblicata.</p>}
+    <p><a href="/serate">Tutte le serate →</a></p>
+  </section>
+
+  <section class="section container">
+    <h2>News</h2>
+    {news.length ? (
+      <div class="grid">
+        {news.map((n) => <ArticleCard href={`/news/${n.id}`} {...n.data} />)}
+      </div>
+    ) : <p class="muted">Nessuna news pubblicata.</p>}
+    <p><a href="/news">Tutte le news →</a></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero { text-align: center; padding: 72px 0 56px; background: radial-gradient(ellipse at top, #2a3a55 0%, var(--bg) 70%); }
+  .hero img { margin: 0 auto 16px; border-radius: 16px; }
+  .lead { max-width: 640px; margin: 0 auto 24px; color: var(--muted); font-size: 1.1rem; }
+  .info { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+</style>

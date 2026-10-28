@@ -1,0 +1,96 @@
+backend:
+  name: github
+  repo: Destard20/GdG-Website
+  branch: main
+  # base_url: https://URL-DEL-WORKER-OAUTH # opzionale, vedi README
+
+local_backend: true
+media_folder: public/uploads
+public_folder: /uploads
+locale: it
+
+collections:
+  - name: serate
+    label: Serate
+    label_singular: Serata
+    folder: src/content/serate
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    fields:
+      - { name: title, label: Titolo, widget: string }
+      - { name: date, label: Data, widget: datetime, time_format: false }
+      - { name: excerpt, label: Anteprima, widget: text, required: false }
+      - { name: cover, label: Immagine di copertina, widget: image, required: false }
+      - name: tavoli
+        label: Tavoli
+        widget: list
+        required: false
+        fields:
+          - { name: gioco, label: Gioco, widget: string }
+          - { name: tipo, label: Tipo, widget: select, options: [{ label: Gioco di ruolo, value: gdr }, { label: Gioco da tavolo, value: tavolo }] }
+          - { name: immagine, label: Immagine, widget: image, required: false }
+      - { name: body, label: Resoconto, widget: markdown }
+
+  - name: news
+    label: News
+    label_singular: News
+    folder: src/content/news
+    create: true
+    slug: '{{year}}-{{month}}-{{slug}}'
+    fields:
+      - { name: title, label: Titolo, widget: string }
+      - { name: date, label: Data, widget: datetime, time_format: false }
+      - { name: excerpt, label: Anteprima, widget: text, required: false }
+      - { name: cover, label: Immagine di copertina, widget: image, required: false }
+      - { name: body, label: Testo, widget: markdown }
+
+  - name: collaborazioni
+    label: Collaborazioni
+    label_singular: Collaborazione
+    folder: src/content/collaborazioni
+    create: true
+    slug: '{{slug}}'
+    fields:
+      - { name: nome, label: Nome, widget: string }
+      - { name: logo, label: Logo, widget: image }
+      - { name: url, label: Sito web, widget: string, required: false }
+      - { name: descrizione, label: Descrizione breve, widget: text }
+      - { name: ordine, label: Ordine (numero più basso = prima), widget: number, value_type: int, default: 100, required: false }
+
+  - name: dati
+    label: Dati del sito
+    files:
+      - name: manuali
+        label: Manuali di gioco di ruolo
+        file: src/data/manuali.json
+        fields:
+          - name: sistemi
+            label: Sistemi
+            widget: list
+            root: true
+            fields:
+              - { name: sistema, label: Sistema, widget: string }
+              - { name: titoli, label: Titoli, widget: list, field: { name: titolo, label: Titolo, widget: string } }
+      - name: impostazioni
+        label: Impostazioni (contatti, Telegram, orari)
+        file: src/data/site.json
+        fields:
+          - { name: name, label: Nome, widget: string }
+          - { name: tagline, label: Slogan, widget: string }
+          - { name: description, label: Descrizione per i motori di ricerca, widget: text }
+          - { name: address, label: Indirizzo, widget: string }
+          - { name: mapUrl, label: Link mappa, widget: string }
+          - { name: telegramUrl, label: Link gruppo Telegram, widget: string }
+          - { name: email, label: Email, widget: string }
+          - { name: phone, label: Telefono, widget: string }
+          - { name: sheetCsvUrl, label: Link CSV del foglio Google (tab pubblico), widget: string }
+          - { name: hoursNote, label: Nota sugli orari, widget: string }
+          - name: hours
+            label: Orari
+            widget: list
+            fields:
+              - { name: day, label: 'Giorno (0=Dom, 1=Lun … 6=Sab)', widget: number, value_type: int }
+              - { name: label, label: Nome giorno, widget: string }
+              - { name: open, label: Apertura, widget: string, required: false }
+              - { name: close, label: Chiusura, widget: string, required: false }
+              - { name: closed, label: Chiuso, widget: boolean, default: false, required: false }

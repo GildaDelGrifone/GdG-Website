@@ -1,0 +1,21 @@
+{
+  "name": "Gilda del Grifone Torino",
+  "tagline": "La tua casa per il Gioco di Ruolo e da Tavolo",
+  "description": "Associazione di giochi da tavolo e di ruolo a Torino. Oltre 400 giochi, serate aperte a tutti e campagne di gioco di ruolo.",
+  "address": "Via Ada Negri 8/a, Torino",
+  "mapUrl": "https://www.google.com/maps/search/?api=1&query=Via+Ada+Negri+8%2Fa+Torino",
+  "telegramUrl": "https://t.me/+U5NEyDvN_fMxZTQ0",
+  "email": "lagildadelgrifonetorino@gmail.com",
+  "phone": "+39 348 225 4641",
+  "sheetCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTNjSPNsr6l2a4gD2xDU-AnHnXuaggBUCOGO2XXpjBspmeMByCfZMMk8kfe5ZMDBFhOHXw55SWuZx77/pub?gid=1602092043&single=true&output=csv",
+  "hours": [
+    { "day": 1, "label": "Lunedì", "open": "20:45", "close": "24:00" },
+    { "day": 2, "label": "Martedì", "closed": true },
+    { "day": 3, "label": "Mercoledì", "open": "20:45", "close": "24:00" },
+    { "day": 4, "label": "Giovedì", "closed": true },
+    { "day": 5, "label": "Venerdì", "open": "20:45", "close": "24:00" },
+    { "day": 6, "label": "Sabato", "closed": true },
+    { "day": 0, "label": "Domenica", "closed": true }
+  ],
+  "hoursNote": "Negli altri giorni siamo chiusi, salvo aperture straordinarie annunciate su Telegram."
+}

@@ -1,0 +1,122 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import site from '../data/site.json';
+---
+
+<BaseLayout title="Ludoteca" description="Sfoglia i giochi da tavolo della Gilda del Grifone: cerca per nome, categoria e disponibilità.">
+  <div class="container section">
+    <h1>Ludoteca</h1>
+    <p class="muted">
+      Oltre 400 giochi a disposizione dei soci. Puoi giocarli in sede o prenderli in prestito.
+    </p>
+
+    <form class="filters" id="filters" role="search">
+      <input type="search" id="q" placeholder="Cerca un gioco…" aria-label="Cerca un gioco" />
+      <select id="categoria" aria-label="Categoria"><option value="">Tutte le categorie</option></select>
+      <select id="armadio" aria-label="Armadio"><option value="">Tutti gli armadi</option></select>
+      <label class="check"><input type="checkbox" id="disp" /> Solo disponibili</label>
+    </form>
+
+    <p id="count" class="muted" aria-live="polite">Caricamento dei giochi…</p>
+    <div id="list" class="grid"></div>
+    <p id="error" class="muted" hidden>Non riusciamo a caricare l'elenco dei giochi. Riprova più tardi.</p>
+  </div>
+</BaseLayout>
+
+<style>
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; align-items: center; }
+  #q { flex: 1 1 220px; }
+  .check { display: flex; gap: 6px; align-items: center; }
+  .check input { padding: 0; }
+</style>
+
+<style is:global>
+  .game h3 { font-size: 1.05rem; margin: 0 0 6px; }
+  .game p { margin: 8px 0 0; font-size: 0.9rem; }
+  .game .tags { display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.75rem; }
+  .tag { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .tag.ok { color: var(--ok); border-color: var(--ok); }
+  .tag.no { color: var(--warn); border-color: var(--warn); }
+</style>
+
+<script define:vars={{ sheetUrl: site.sheetCsvUrl }}>
+  window.__sheetUrl = sheetUrl;
+</script>
+
+<script>
+  import { loadGames, filterGames, type Game } from '../scripts/game-library';
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const list = $('list');
+  const count = $('count');
+  const PAGE = 60;
+  let games: Game[] = [];
+  let shown = PAGE;
+  let results: Game[] = [];
+
+  const el = (tag: string, cls?: string, text?: string) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  };
+
+  function render() {
+    list.replaceChildren(
+      ...results.slice(0, shown).map((g) => {
+        const card = el('article', 'card game');
+        card.append(el('h3', undefined, g.titolo));
+        const tags = el('div', 'tags');
+        tags.append(el('span', `tag ${g.disponibile ? 'ok' : 'no'}`, g.disponibile ? 'Disponibile' : 'Prestato'));
+        tags.append(el('span', 'tag', g.categoria));
+        if (g.armadio) tags.append(el('span', 'tag', `Armadio ${g.armadio.toLowerCase()}`));
+        card.append(tags);
+        if (g.descrizione) card.append(el('p', 'muted', g.descrizione));
+        return card;
+      }),
+    );
+    count.textContent = `${results.length} giochi`;
+    if (results.length > shown) {
+      const more = el('button', 'btn', 'Mostra altri');
+      more.addEventListener('click', () => { shown += PAGE; render(); });
+      const wrap = el('div');
+      wrap.append(more);
+      list.append(wrap);
+    }
+  }
+
+  function update() {
+    shown = PAGE;
+    results = filterGames(games, {
+      query: $<HTMLInputElement>('q').value,
+      categoria: $<HTMLSelectElement>('categoria').value,
+      armadio: $<HTMLSelectElement>('armadio').value,
+      soloDisponibili: $<HTMLInputElement>('disp').checked,
+    });
+    render();
+  }
+
+  function fillSelect(id: string, values: string[]) {
+    const select = $<HTMLSelectElement>(id);
+    [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b, 'it')).forEach((v) => {
+      const o = el('option', undefined, v) as HTMLOptionElement;
+      o.value = v;
+      select.append(o);
+    });
+  }
+
+  $('filters').addEventListener('submit', (e) => e.preventDefault());
+  $('filters').addEventListener('input', update);
+
+  loadGames((window as unknown as { __sheetUrl: string }).__sheetUrl, '/games.json')
+    .then((g) => {
+      games = g;
+      fillSelect('categoria', g.map((x) => x.categoria));
+      fillSelect('armadio', g.map((x) => x.armadio));
+      update();
+    })
+    .catch(() => {
+      count.hidden = true;
+      $('error').hidden = false;
+    });
+</script>

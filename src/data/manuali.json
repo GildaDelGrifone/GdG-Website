@@ -1,0 +1,100 @@
+[
+  { "sistema": "AD&D 2", "titoli": ["I Misteri della Foresta Incantata"] },
+  { "sistema": "Ancestry", "titoli": ["Mille e non più Mille"] },
+  { "sistema": "Anime e Sangue", "titoli": ["Manuale base", "Cuori d'Acciaio", "Scaglie di Drago", "La Forgia dei Creatori"] },
+  { "sistema": "Ars Magica", "titoli": ["L'Arte della Magia"] },
+  { "sistema": "AVC", "titoli": ["Ab Urbe Condita"] },
+  { "sistema": "Brass Age", "titoli": ["Manuale Base"] },
+  { "sistema": "Conan", "titoli": ["Il Gioco di Ruolo"] },
+  { "sistema": "Crossdoom", "titoli": ["Manuale Base"] },
+  {
+    "sistema": "Cthulhu",
+    "titoli": [
+      "Il Richiamo di Cthulhu",
+      "Il Richiamo di Cthulhu - Fuga da Innsmouth",
+      "Sulle Tracce di Cthulhu: Ombre Calate dal Tempo",
+      "Sulle Tracce di Cthulhu: Tra le Spire Nebbiose di Londra",
+      "Sulle Tracce di Cthulhu: Dossier Armitage",
+      "Sulle Tracce di Cthulhu: I Misteriosi Racconti dei Grandi Antichi",
+      "Sulle Tracce di Cthulhu: Santuario del Custode e Schermo dei Misteri",
+      "Sulle Tracce di Cthulhu: Trattato di Magia"
+    ]
+  },
+  { "sistema": "CthulhuTech", "titoli": ["Vademecum", "Manuale Base"] },
+  { "sistema": "Dark Heresy", "titoli": ["Manuale Base"] },
+  { "sistema": "D&D Basic / Mystara", "titoli": ["Set 3 Regole Companion", "Atlante 1 (Karameikos)", "Atlante 2 (Ylaruam)", "Atlante 3 (Glantri)"] },
+  {
+    "sistema": "D&D 3 / 3.5",
+    "titoli": [
+      "Manuale del Giocatore", "Guida del Dungeon Master 1", "Guida del Dungeon Master 2", "Manuale dei Mostri 1", "Manuale dei Mostri 2",
+      "Manuale dei Piani", "Manuale delle Arti Psioniche", "Manuale dei Livelli Epici", "Abissi e Inferi", "Codex Immondo 1",
+      "Signori della Follia", "Magic of Incarnum", "Libro delle Fosche Tenebre", "Draconomicon", "Liber Mortis",
+      "Spell Law (Tomo 1)", "Spell Law (Tomo 2)", "Spell Law (Tomo 3)", "Guida alla Nascita degli Eroi", "Signori delle Terre Selvagge",
+      "Il Canto e il Silenzio", "Il Tomo e il Sangue", "Il Pugno e la Spada", "Difensori della Fede", "Atlante", "Physiologus - Bestiario",
+      "Forgotten Realms: Guida del Giocatore a Faerun", "Forgotten Realms: Silver Marches", "Forgotten Realms: Signori dell'Oscurità",
+      "Eberron", "Razze di Eberron", "Sharn: Città delle Torri", "Oriental Adventures", "Tome of Battle", "The Book of Nine Swords",
+      "Tome of Magic", "Frostburn", "Fiendish Codex 2"
+    ]
+  },
+  { "sistema": "Drizzit", "titoli": ["Manuale"] },
+  { "sistema": "Dungeon World", "titoli": ["Manuale Base"] },
+  { "sistema": "Dungeonslayers", "titoli": ["Manuale"] },
+  { "sistema": "Empyrea", "titoli": ["Manuale"] },
+  { "sistema": "Exalted", "titoli": ["Manuale Base", "Seconda Edizione", "Il Libro dei 3 Cerchi", "Compendio del Narratore", "The Lunars"] },
+  { "sistema": "Faith Empire", "titoli": ["Impero della Fede"] },
+  { "sistema": "Gnosis", "titoli": ["I signori del Mondo", "Il Mondo Classico"] },
+  { "sistema": "Labirinth Lord", "titoli": ["Manuale"] },
+  { "sistema": "L'Era del Drago", "titoli": ["Manuale"] },
+  { "sistema": "Legends & Lairs", "titoli": ["Incantesimi e Incantatori", "Oscurità e Orrore"] },
+  { "sistema": "Lex Arcana", "titoli": ["Manuale"] },
+  {
+    "sistema": "L'Unico Anello",
+    "titoli": ["Racconti delle Terre Selvagge", "Ponte Lagolungo", "Nel Cuore delle Terre Selvagge", "L'oscuramento di Bosco Atro", "Avventure Oltre i Confini delle Terre Selvagge"]
+  },
+  { "sistema": "Metropoli", "titoli": ["Manuale"] },
+  { "sistema": "Mondo di Eymerich", "titoli": ["Manuale"] },
+  {
+    "sistema": "Mondo di Tenebra",
+    "titoli": [
+      "Vampiri: Il Requiem", "Lupi Mannari: I Rinnegati", "Vampiri: Guida al Sabbat", "Vampire: Guide to the Camarilla", "Vampire: Lasombra",
+      "Orpheus", "Hunter: The Vigil", "Slasher", "Changeling: I Perduti", "Changeling: Autumn Nightmares", "Changeling: Winter Masques", "Changeling: Rites of Spring"
+    ]
+  },
+  { "sistema": "Mythos", "titoli": ["Manuale"] },
+  { "sistema": "Nameless Land", "titoli": ["Figli del Nuovo Mondo", "I Giorni delle Fiamme"] },
+  { "sistema": "Nephandum", "titoli": ["Manuale base", "Creature delle Tenebre"] },
+  {
+    "sistema": "Pathfinder",
+    "titoli": [
+      "Core Rulebook", "Manuale di Gioco", "Guida del Giocatore", "Guida alla Magia", "Ascesa dei Signori delle Rune", "La Collina della Morte",
+      "Alba dei Re", "Atlante del Mare Interno", "La Maledizione di Ashthokar", "Bestiario 1", "Bestiario 2", "Bestiario 3",
+      "Morte Sovrana (3 volumi)", "Council of Thieves (2 volumi)"
+    ]
+  },
+  { "sistema": "Project H.O.P.E.", "titoli": ["Manuale Base", "Gotterdammerung (Atto 1)", "Hana-Bi (Atto 2)", "Festung Europa", "Sekai dai Ichi"] },
+  { "sistema": "Qin", "titoli": ["I Regni Combattenti"] },
+  { "sistema": "Rogue Trader", "titoli": ["Manuale Base", "Kit dell'Arbitro di Gioco"] },
+  { "sistema": "Rolemaster", "titoli": ["Manuale Base", "Creatures and Monsters"] },
+  { "sistema": "RuneQuest II", "titoli": ["Manuale Base", "Arena dei Mostri"] },
+  {
+    "sistema": "Savage Worlds",
+    "titoli": [
+      "Manuale", "Low Life", "Freak Control", "Deadlands: Gli Uomini", "Deadlands: La Legge", "Deadlands: Messico e Nuvole", "Deadlands: Città Fantasma",
+      "50 Phantoms", "Enascentia (con Dietro lo Schermo)", "Nemezis", "Necessary Evil", "Ultima Forsan", "Beasts and Barbarians (con La Spada di Izim)", "M.E.R.C.S.", "Katakumbas"
+    ]
+  },
+  { "sistema": "Shadowrun", "titoli": ["DNA/DOA"] },
+  {
+    "sistema": "Sine Requie",
+    "titoli": ["Soviet", "Vodzene", "Tomo dei Morti (Vol. 1)", "Tomo dei Morti (Vol. 2)", "Regno di Osiride", "Le Terre Perdute", "Trono del Crisantemo", "IV Reich", "Gli Occhi del Serpente"]
+  },
+  {
+    "sistema": "Stormbringer",
+    "titoli": ["Manuale base", "La Spada Nera", "Pan Thang: Avventure", "Pan Thang: L'Isola dei Demoni", "Il Canto degli Inferi", "Il Ladro d'Anime", "I Signori dei Draghi di Melnibone"]
+  },
+  { "sistema": "Uomini e Vermi", "titoli": ["Manuale"] },
+  { "sistema": "Venetia Oscura", "titoli": ["Manuale"] },
+  { "sistema": "Warhammer Fantasy", "titoli": ["Manuale"] },
+  { "sistema": "Warhammer 40K", "titoli": ["Manuale Base", "Index Astartes II", "Cavalieri Grigi", "Città della Morte", "Occhio del Terrore", "Space Marine", "Marienburg - Una Città in Vendita", "Martelli da Guerra"] },
+  { "sistema": "Warmaster", "titoli": ["Manuale"] }
+]

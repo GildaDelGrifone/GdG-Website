@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const partners = (await getCollection('collaborazioni')).sort(
+  (a, b) => a.data.ordine - b.data.ordine || a.data.nome.localeCompare(b.data.nome, 'it'),
+);
+---
+
+<BaseLayout title="Collaborazioni" description="Le realtà con cui collabora la Gilda del Grifone Torino.">
+  <div class="container section">
+    <h1>Collaborazioni</h1>
+    <p class="muted">Le associazioni, i negozi e gli eventi con cui lavoriamo.</p>
+    {partners.length ? (
+      <div class="grid partners">
+        {partners.map(({ data: p }) => {
+          const Tag = p.url ? 'a' : 'div';
+          return (
+            <Tag class="card partner" href={p.url} target={p.url ? '_blank' : undefined} rel={p.url ? 'noopener noreferrer' : undefined}>
+              <div class="logo"><img src={p.logo} alt={`Logo ${p.nome}`} loading="lazy" /></div>
+              <h2>{p.nome}</h2>
+              <p class="muted">{p.descrizione}</p>
+            </Tag>
+          );
+        })}
+      </div>
+    ) : <p class="muted">Presto qui troverai le nostre collaborazioni.</p>}
+  </div>
+</BaseLayout>
+
+<style>
+  .partners { grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); margin-top: 24px; }
+  .partner { display: block; text-align: center; color: var(--text); text-decoration: none; transition: border-color 0.15s; }
+  a.partner:hover { border-color: var(--gold); color: var(--text); }
+  .logo { height: 110px; display: flex; align-items: center; justify-content: center; background: #fff; border-radius: 8px; padding: 12px; margin-bottom: 14px; }
+  .logo img { max-height: 100%; width: auto; object-fit: contain; }
+  h2 { font-size: 1.1rem; margin-bottom: 4px; }
+  p { margin: 0; font-size: 0.9rem; }
+</style>

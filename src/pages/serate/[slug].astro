@@ -1,0 +1,36 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+export async function getStaticPaths() {
+  const serate = await getCollection('serate');
+  return serate.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { title, date, excerpt, cover, tavoli } = entry.data;
+const dateLabel = date.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
+---
+
+<BaseLayout title={title} description={excerpt} image={cover}>
+  <article class="container section prose">
+    <p class="muted"><a href="/serate">← Tutte le serate</a></p>
+    <time datetime={date.toISOString()} class="muted">{dateLabel}</time>
+    <h1>{title}</h1>
+    {cover && <img src={cover} alt="" />}
+    {tavoli?.length ? (
+      <ul class="tavoli">
+        {tavoli.map((t) => (
+          <li><strong>{t.gioco}</strong> <span class="tag">{t.tipo === 'gdr' ? 'Gioco di ruolo' : 'Gioco da tavolo'}</span></li>
+        ))}
+      </ul>
+    ) : null}
+    <Content />
+  </article>
+</BaseLayout>
+
+<style>
+  .tavoli { padding-left: 1.2em; }
+  .tag { font-size: 0.75rem; padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); margin-left: 6px; }
+</style>
