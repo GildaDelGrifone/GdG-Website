@@ -7,6 +7,7 @@
     "dev": "astro dev",
     "build": "astro build",
     "check": "astro check",
+    "import:wp": "node scripts/import-wp.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
@@ -18,6 +19,7 @@
     "typescript": "^5.7.2"
   },
   "devDependencies": {
-    "@types/papaparse": "^5.3.15"
+    "@types/papaparse": "^5.3.15",
+    "turndown": "^7.2.4"
   }
 }

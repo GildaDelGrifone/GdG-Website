@@ -26,6 +26,19 @@ La pagina `/ludoteca` legge il CSV pubblicato del tab **Elenco Pubblico** (URL i
 
 **Non pubblicare mai il tab con i dati dei soci** (nome, telefono, mail): un CSV pubblicato è leggibile da chiunque abbia il link.
 
+## Importare i vecchi post
+
+Lo script legge i post dalla API pubblica del vecchio sito WordPress, scarica le immagini in `public/uploads/<collezione>/<slug>/` e crea il file Markdown in `src/content/<collezione>/`.
+
+```sh
+npm run import:wp -- https://www.gildadelgrifonetorino.it/eventi-della-serata-lunedi-26-10-2026/
+npm run import:wp -- --file links.txt          # un URL per riga, # per i commenti
+npm run import:wp -- --collection news <url>   # per le news (default: serate)
+npm run import:wp -- --force <url>             # sovrascrive un post già importato
+```
+
+I post già importati vengono saltati; un link sbagliato viene segnalato senza fermare gli altri.
+
 ## CMS
 
 1. Il repository GitHub è già impostato in `public/admin/config.yml` (`backend.repo`).
