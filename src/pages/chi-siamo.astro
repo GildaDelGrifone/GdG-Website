@@ -1,0 +1,89 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import TelegramButton from '../components/TelegramButton.astro';
+import site from '../data/site.json';
+import team from '../data/chi-siamo.json';
+---
+
+<BaseLayout title="Chi siamo" description="La storia della Gilda del Grifone di Torino, fondata nel 2004: gioco di ruolo e da tavolo, scuole, eventi, consiglio direttivo e staff.">
+  <div class="container section">
+    <h1>Chi siamo</h1>
+
+    <div class="prose">
+      <p class="lead">
+        Fondata nel novembre del 2004, La Gilda del Grifone è cresciuta fino a diventare un solido punto di riferimento, a livello regionale e nazionale,
+        per la cultura del Gioco di Ruolo e del Gioco da Tavolo. Da quasi un decennio la nostra casa è la storica sede operativa di
+        {site.address.replace(', Torino', '')} a Torino, dove, in stretta sinergia con la Circoscrizione 2, accogliamo centinaia di appassionati e curiosi.
+      </p>
+
+      <h2>Oltre il tavolo: il gioco come valore sociale</h2>
+      <p>
+        Crediamo fermamente che il gioco "analogico" sia un potente antidoto all'isolamento digitale e una sana alternativa al gioco d'azzardo.
+        Per noi giocare significa socialità, creatività e inclusione.
+      </p>
+      <p>
+        Questo approccio ci ha spinti a portare i dadi e le pedine direttamente nelle scuole. In collaborazione con il Centro Cultura Ludica
+        "Walter Ferraro", i nostri volontari organizzano attività per i bambini delle elementari. Nelle scuole superiori, invece, utilizziamo i giochi di
+        ruolo storici per coinvolgere attivamente gli studenti — inclusi i ragazzi inseriti in percorsi di recupero — stimolando il problem solving e
+        l'immedesimazione, con riscontri entusiastici da parte degli insegnanti.
+      </p>
+
+      <h2>Eventi, fiere e resilienza</h2>
+      <p>
+        Negli anni abbiamo portato la nostra passione nelle piazze con eventi cittadini di grande successo come <em>Il Volo del Grifone</em> e
+        <em>La Notte del Grifone</em>, e abbiamo istituito i <em>Grifone Days</em> per onorare la memoria del nostro compianto presidente
+        Ferdinando "Zarf" Marzuoli.
+      </p>
+      <p>
+        Dal 2008 siamo una presenza fissa a Torino Comics ed abbiamo collaborato con realtà di spicco come PLAY Modena, di cui siamo stati partner
+        ufficiali. Proprio a Modena, in collaborazione con l'Istituto Storico, abbiamo dimostrato come un'avventura investigativa possa trasmettere
+        valori e memoria storica.
+      </p>
+      <p>
+        Nemmeno la pandemia ci ha fermati: quando i tavoli fisici sono stati chiusi, abbiamo spostato l'aggregazione sul nostro canale Discord,
+        garantendo a giovani e meno giovani uno spazio sicuro dove combattere la solitudine e continuare a fare rete.
+      </p>
+
+      <h2>Il nostro obiettivo</h2>
+      <p>
+        Il futuro della Gilda del Grifone è orientato all'accoglienza di nuovi giocatori. Vogliamo dimostrare alle nuove generazioni (e ai loro genitori)
+        che condividere un'avventura seduti attorno a un tavolo è un'esperienza infinitamente più ricca che giocare da soli davanti a uno schermo.
+        Che tu sia un veterano o un novizio assoluto, i nostri tavoli sono sempre aperti.
+      </p>
+    </div>
+
+    <h2 class="team">Il Consiglio Direttivo</h2>
+    <div class="grid">
+      {team.direttivo.map((m) => (
+        <div class="card member">
+          <strong>{m.nome}</strong>
+          <span class="muted">{m.ruolo}</span>
+        </div>
+      ))}
+    </div>
+
+    <h2 class="team">Lo staff della Gilda</h2>
+    <p class="prose">
+      Lo staff è composto da volontari eccezionali che ci aiutano ogni giorno, rispondono alle vostre domande e partecipano all'organizzazione di
+      tutte le attività insieme al direttivo.
+    </p>
+    <ul class="staff">
+      {team.staff.map((n) => <li class="tag">{n}</li>)}
+    </ul>
+
+    <div class="card join">
+      <h2>Vuoi dare una mano?</h2>
+      <p>Diventa parte dello staff: scrivici a <a href={`mailto:${site.email}`}>{site.email}</a> o passa a trovarci in sede.</p>
+      <TelegramButton />
+    </div>
+  </div>
+</BaseLayout>
+
+<style>
+  .lead { font-size: 1.15rem; }
+  .team { margin-top: 48px; }
+  .member { display: flex; flex-direction: column; gap: 4px; }
+  .staff { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 12px 0 0; }
+  .tag { padding: 4px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .join { margin-top: 48px; }
+</style>

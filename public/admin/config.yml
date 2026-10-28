@@ -71,6 +71,20 @@ collections:
             fields:
               - { name: sistema, label: Sistema, widget: string }
               - { name: titoli, label: Titoli, widget: list, field: { name: titolo, label: Titolo, widget: string } }
+      - name: chi-siamo
+        label: Chi siamo (direttivo e staff)
+        file: src/data/chi-siamo.json
+        fields:
+          - name: direttivo
+            label: Consiglio direttivo
+            widget: list
+            fields:
+              - { name: nome, label: Nome, widget: string }
+              - { name: ruolo, label: Ruolo, widget: string }
+          - name: staff
+            label: Staff
+            widget: list
+            field: { name: nome, label: Nome, widget: string }
       - name: impostazioni
         label: Impostazioni (contatti, Telegram, orari)
         file: src/data/site.json

@@ -21,7 +21,7 @@ npm run build    # controllo tipi + build in dist/
 
 ## Ludoteca (Google Sheet)
 
-La pagina `/ludoteca` legge il CSV pubblicato del tab **Elenco Pubblico** (URL in `site.json` → `sheetCsvUrl`) e usa solo le colonne
+La pagina `/giochi-da-tavolo-torino` legge il CSV pubblicato del tab **Elenco Pubblico** (URL in `site.json` → `sheetCsvUrl`) e usa solo le colonne
 `ID, TITOLO, CATEGORIA, DESCRIZIONE, ARMADIO, STATUS`. Se il foglio non è raggiungibile usa lo snapshot `/games.json`, generato a ogni build.
 
 **Non pubblicare mai il tab con i dati dei soci** (nome, telefono, mail): un CSV pubblicato è leggibile da chiunque abbia il link.

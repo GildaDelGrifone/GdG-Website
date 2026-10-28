@@ -1,0 +1,10 @@
+{
+  "direttivo": [
+    { "nome": "Marco Pardini", "ruolo": "Presidente" },
+    { "nome": "Rosa Maria Chiale", "ruolo": "Vicepresidente" },
+    { "nome": "Valentin Popescu", "ruolo": "Segretario" },
+    { "nome": "Raffaele Giove", "ruolo": "Tesoriere" },
+    { "nome": "Massimiliano Bonelli", "ruolo": "Consigliere" }
+  ],
+  "staff": ["Alberyc", "Grazia", "Domenico", "Gaspare", "Andrea", "Tony", "Lorenzo", "Paolo", "Gioele", "Dario", "Giulio"]
+}
