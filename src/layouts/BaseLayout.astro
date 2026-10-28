@@ -3,17 +3,33 @@ import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+import { siteSchema, breadcrumbSchema, toJsonLd } from '../lib/schema';
 
 interface Props {
   title?: string;
+  // Titolo completo, usato così com'è (senza suffisso con il nome del sito).
+  seoTitle?: string;
   description?: string;
   image?: string;
+  // Nodi schema.org aggiuntivi, uniti a quelli del sito.
+  schema?: Record<string, unknown>[];
+  type?: 'website' | 'article';
+  published?: Date;
+  noindex?: boolean;
+  // Briciole di pane: [{ name, path }], dalla home alla pagina corrente.
+  breadcrumbs?: { name: string; path: string }[];
 }
 
-const { title, description = site.description, image = '/logo.png' } = Astro.props;
-const fullTitle = title ? `${title} · ${site.name}` : site.name;
+const { title, seoTitle, description = site.description, image = '/logo.png', schema = [], type = 'website', published, noindex = false, breadcrumbs } = Astro.props;
+const fullTitle = seoTitle ?? (title ? `${title} · ${site.name}` : site.name);
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+const origin = Astro.site!.origin;
+const jsonLd = toJsonLd([
+  ...siteSchema(origin),
+  ...schema,
+  ...(breadcrumbs ? [breadcrumbSchema(origin, breadcrumbs)] : []),
+]);
 ---
 
 <!doctype html>
@@ -26,11 +42,21 @@ const ogImage = new URL(image, Astro.site);
     <link rel="canonical" href={canonical} />
     <link rel="icon" href="/logo.png" />
     <link rel="alternate" type="application/rss+xml" title={site.name} href="/rss.xml" />
-    <meta property="og:type" content="website" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
     <meta property="og:image" content={ogImage} />
+    <meta property="og:image:alt" content={fullTitle} />
     <meta property="og:locale" content="it_IT" />
+    {published && <meta property="article:published_time" content={published.toISOString()} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
+    <script type="application/ld+json" set:html={jsonLd} />
   </head>
   <body>
     <Header />

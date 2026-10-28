@@ -6,6 +6,7 @@
 import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
 import TurndownService from 'turndown';
+import sharp from 'sharp';
 
 const args = process.argv.slice(2);
 const urls = [];
@@ -39,7 +40,10 @@ async function download(src, destDir) {
   if (!(await exists(dest))) {
     const res = await fetch(src);
     if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    await writeFile(dest, Buffer.from(await res.arrayBuffer()));
+    // Ridimensiona a 1600px di larghezza massima (e applica l'orientamento EXIF) per tenere leggero il repo.
+    const buf = Buffer.from(await res.arrayBuffer());
+    const small = await sharp(buf).rotate().resize({ width: 1600, withoutEnlargement: true }).toBuffer().catch(() => buf);
+    await writeFile(dest, small);
   }
   return name;
 }

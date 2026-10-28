@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
+import { articleSchema } from '../../lib/schema';
+import { imageSize } from '../../lib/images';
 
 export async function getStaticPaths() {
   const serate = await getCollection('serate');
@@ -10,15 +12,24 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 const { title, date, excerpt, cover, tavoli } = entry.data;
+const coverSize = await imageSize(cover);
 const dateLabel = date.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
-<BaseLayout title={title} description={excerpt} image={cover}>
+<BaseLayout
+  title={title}
+  description={excerpt}
+  image={cover}
+  type="article"
+  published={date}
+  breadcrumbs={[{ name: 'Home', path: '/' }, { name: 'Serate', path: '/serate' }, { name: title, path: Astro.url.pathname }]}
+  schema={[articleSchema(Astro.site!.origin, { title, date, image: cover, url: Astro.url.href })]}
+>
   <article class="container section prose">
     <p class="muted"><a href="/serate">← Tutte le serate</a></p>
     <time datetime={date.toISOString()} class="muted">{dateLabel}</time>
     <h1>{title}</h1>
-    {cover && <img src={cover} alt="" />}
+    {cover && <img src={cover} alt={title} {...coverSize} decoding="async" fetchpriority="high" />}
     {tavoli?.length ? (
       <ul class="tavoli">
         {tavoli.map((t) => (

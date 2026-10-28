@@ -3,9 +3,13 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import site from '../data/site.json';
 ---
 
-<BaseLayout title="Giochi da tavolo a Torino – Ludoteca" description="Ludoteca della Gilda del Grifone a Torino: oltre 400 giochi da tavolo. Cerca per nome, categoria e disponibilità.">
+<BaseLayout
+  seoTitle="Gioco da Tavolo Torino | Ludoteca con oltre 400 Titoli"
+  description="Scopri la ludoteca della Gilda del Grifone a Torino. 400+ giochi da tavolo pronti per essere giocati. Vieni a provare le ultime novità e i grandi classici."
+>
   <div class="container section">
-    <h1>Ludoteca</h1>
+    <p class="label">Ludoteca</p>
+    <h1>Giochi da tavolo a Torino</h1>
     <p class="muted">
       Oltre 400 giochi a disposizione dei soci. Puoi giocarli in sede o prenderli in prestito.
     </p>
@@ -24,6 +28,7 @@ import site from '../data/site.json';
 </BaseLayout>
 
 <style>
+  .label { margin: 0 0 4px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
   .filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; align-items: center; }
   #q { flex: 1 1 220px; }
   .check { display: flex; gap: 6px; align-items: center; }

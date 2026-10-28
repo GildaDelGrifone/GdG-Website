@@ -6,7 +6,7 @@ import ArticleCard from '../../components/ArticleCard.astro';
 const news = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
 
-<BaseLayout title="News" description="Le ultime novità dalla Gilda del Grifone Torino.">
+<BaseLayout title="News" description="News dalla Gilda del Grifone di Torino: eventi, fiere, aperture straordinarie e novità della ludoteca e del gioco di ruolo.">
   <div class="container section">
     <h1>News</h1>
     {news.length ? (
