@@ -37,7 +37,7 @@ async function loadUrlsFromFile(filePath) {
 }
 
 // Le immagini vivono nel bucket R2: qui si scaricano in public/uploads (ignorata da git) e poi si caricano con `npm run media:sync`.
-const MEDIA_URL = (process.env.PUBLIC_MEDIA_URL ?? 'https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev').replace(/\/$/, '');
+const MEDIA_URL = (process.env.PUBLIC_MEDIA_URL ?? 'https://media.gildadelgrifonetorino.it').replace(/\/$/, '');
 
 const args = process.argv.slice(2);
 const urls = [];

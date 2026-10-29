@@ -1,7 +1,7 @@
 ---
 title: "Eventi della Serata: Mercoledì 16-09-2026"
 date: 2026-09-16
-cover: "https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev/serate/eventi-della-serata-mercoledi-16-09-2026/collage_b00395ed-5bd0-4e74-8613-c0a27a4d9685-scaled.jpg"
+cover: "https://media.gildadelgrifonetorino.it/serate/eventi-della-serata-mercoledi-16-09-2026/collage_b00395ed-5bd0-4e74-8613-c0a27a4d9685-scaled.jpg"
 excerpt: "Ciao a tutti, appassionati di giochi da tavolo e avventurieri della Gilda del Grifone! È arrivato il momento di svelare cosa ci attende per la serata di…"
 ---
 
@@ -13,25 +13,25 @@ Ecco i tavoli che abbiamo in programma per voi:
 
 Un’ambientazione mozzafiato per gli amanti del genere. Anche se questo tavolo risulta al momento al completo, potete tenere d’occhio eventuali aggiornamenti tramite il link ufficiale: [Prenotazione Il destino di Trebisonda](https://t.me/Gildadelgrifonetorino/2478).
 
-![Il destino di Trebisonda](https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev/serate/eventi-della-serata-mercoledi-16-09-2026/event_1195cfa6-916c-4403-9507-67524141706e.jpg)
+![Il destino di Trebisonda](https://media.gildadelgrifonetorino.it/serate/eventi-della-serata-mercoledi-16-09-2026/event_1195cfa6-916c-4403-9507-67524141706e.jpg)
 
 ### Interinali alla riscossa! (GURPS Operai)
 
 Una sessione tutta da ridere e da scoprire con GURPS. Tavolo completo, ma potete consultare i dettagli qui: [Dettagli Interinali alla riscossa!](https://t.me/Gildadelgrifonetorino/2489).
 
-![Interinali alla riscossa!](https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev/serate/eventi-della-serata-mercoledi-16-09-2026/event_222d19e1-95e2-4bb5-9f6d-a12c6ce517c0.jpg)
+![Interinali alla riscossa!](https://media.gildadelgrifonetorino.it/serate/eventi-della-serata-mercoledi-16-09-2026/event_222d19e1-95e2-4bb5-9f6d-a12c6ce517c0.jpg)
 
 ### La Signora delle Lacrime (The Others)
 
 C’è ancora posto per sfidare l’oscuro! Il tavolo ha 3 giocatori su 5, quindi non perdete l’occasione di unirvi: [Prenotati qui per La Signora delle Lacrime](https://t.me/Gildadelgrifonetorino/2500).
 
-![La Signora delle Lacrime](https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev/serate/eventi-della-serata-mercoledi-16-09-2026/event_f8778da0-3393-41fa-8a77-72de3c406b06.jpg)
+![La Signora delle Lacrime](https://media.gildadelgrifonetorino.it/serate/eventi-della-serata-mercoledi-16-09-2026/event_f8778da0-3393-41fa-8a77-72de3c406b06.jpg)
 
 ### Heat: Pedal to the Metal
 
 Motori accesi per questa sfida ad alta velocità! Tavolo al completo, link informativo: [Heat: Pedal to the Metal](https://t.me/Gildadelgrifonetorino/2504).
 
-![Heat: Pedal to the Metal](https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev/serate/eventi-della-serata-mercoledi-16-09-2026/event_3013581c-2881-4783-a57c-2995401a1d1d.jpg)
+![Heat: Pedal to the Metal](https://media.gildadelgrifonetorino.it/serate/eventi-della-serata-mercoledi-16-09-2026/event_3013581c-2881-4783-a57c-2995401a1d1d.jpg)
 
 ---
 
