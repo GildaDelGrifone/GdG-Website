@@ -1,12 +1,43 @@
 // Importa post WordPress (es. "Eventi della Serata") come file Markdown + immagini locali.
 //
 //   node scripts/import-wp.mjs <url> [<url> ...]
-//   node scripts/import-wp.mjs --file links.txt        (un URL per riga, # per i commenti)
+//   node scripts/import-wp.mjs [--file] links.txt      (un URL per riga, # per i commenti)
 //   opzioni: --collection news (default: serate)   --force (sovrascrive i file esistenti)
 import { mkdir, readFile, writeFile, access } from 'node:fs/promises';
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import TurndownService from 'turndown';
 import sharp from 'sharp';
+
+const projectRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
+const exists = (p) => access(p).then(() => true, () => false);
+
+async function resolveFile(filePath) {
+  const candidates = [
+    filePath,
+    process.env.INIT_CWD ? path.resolve(process.env.INIT_CWD, filePath) : null,
+    path.resolve(projectRoot, filePath),
+    path.resolve(projectRoot, 'scripts', filePath),
+  ].filter(Boolean);
+
+  for (const c of candidates) {
+    if (await exists(c)) return c;
+  }
+  return null;
+}
+
+async function loadUrlsFromFile(filePath) {
+  const resolved = await resolveFile(filePath);
+  if (!resolved) {
+    console.error(`Errore: file non trovato "${filePath}"`);
+    process.exit(1);
+  }
+  const lines = (await readFile(resolved, 'utf8')).split('\n');
+  return lines.map((l) => l.trim()).filter((l) => l && !l.startsWith('#'));
+}
+
+// Le immagini vivono nel bucket R2: qui si scaricano in public/uploads (ignorata da git) e poi si caricano con `npm run media:sync`.
+const MEDIA_URL = (process.env.PUBLIC_MEDIA_URL ?? 'https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev').replace(/\/$/, '');
 
 const args = process.argv.slice(2);
 const urls = [];
@@ -15,20 +46,37 @@ let force = false;
 
 for (let i = 0; i < args.length; i++) {
   const a = args[i];
-  if (a === '--force') force = true;
-  else if (a === '--collection') collection = args[++i];
-  else if (a === '--file') {
-    const lines = (await readFile(args[++i], 'utf8')).split('\n');
-    urls.push(...lines.map((l) => l.trim()).filter((l) => l && !l.startsWith('#')));
-  } else urls.push(a);
+  if (a === '--help' || a === '-h') {
+    console.log('Uso: node scripts/import-wp.mjs [--collection serate|news] [--force] <url> ... | [--file] <file.txt>');
+    process.exit(0);
+  } else if (a === '--force') {
+    force = true;
+  } else if (a === '--collection') {
+    collection = args[++i];
+  } else if (a === '--file') {
+    const fileArg = args[++i];
+    if (!fileArg) {
+      console.error('Errore: specificare il percorso del file dopo --file');
+      process.exit(1);
+    }
+    urls.push(...(await loadUrlsFromFile(fileArg)));
+  } else if (a.endsWith('.txt') || a.endsWith('.list')) {
+    urls.push(...(await loadUrlsFromFile(a)));
+  } else {
+    const resolved = await resolveFile(a);
+    if (resolved && !a.startsWith('http://') && !a.startsWith('https://')) {
+      urls.push(...(await loadUrlsFromFile(resolved)));
+    } else {
+      urls.push(a);
+    }
+  }
 }
 
 if (!urls.length) {
-  console.error('Uso: node scripts/import-wp.mjs [--collection serate|news] [--force] <url> ... | --file links.txt');
+  console.error('Uso: node scripts/import-wp.mjs [--collection serate|news] [--force] <url> ... | [--file] <file.txt>');
   process.exit(1);
 }
 
-const exists = (p) => access(p).then(() => true, () => false);
 const td = new TurndownService({ headingStyle: 'atx', hr: '---', bulletListMarker: '-' });
 
 // Decodifica le entità HTML (&#8217; ecc.) riusando turndown, senza altre dipendenze.
@@ -58,11 +106,11 @@ async function importPost(url) {
   if (!post) throw new Error('post non trovato');
 
   const date = post.date.slice(0, 10);
-  const outFile = path.join('src', 'content', collection, `${date}-${slug}.md`);
+  const outFile = path.join(projectRoot, 'src', 'content', collection, `${date}-${slug}.md`);
   if (!force && (await exists(outFile))) return { status: 'skipped', slug, images: 0 };
 
-  const imgDir = path.join('public', 'uploads', collection, slug);
-  const publicBase = `/uploads/${collection}/${slug}`;
+  const imgDir = path.join(projectRoot, 'public', 'uploads', collection, slug);
+  const publicBase = `${MEDIA_URL}/${collection}/${slug}`;
   await mkdir(imgDir, { recursive: true });
   await mkdir(path.dirname(outFile), { recursive: true });
 
@@ -121,3 +169,4 @@ for (const url of urls) {
 }
 console.log(`\nImportati: ${summary.imported} · Saltati: ${summary.skipped} · Falliti: ${summary.failed}`);
 process.exit(summary.failed ? 1 : 0);
+

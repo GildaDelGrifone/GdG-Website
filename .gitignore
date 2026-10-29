@@ -3,3 +3,6 @@ dist/
 .astro/
 .env
 .DS_Store
+.bucketkey
+# Immagini: vivono nel bucket R2, non nel repo
+public/uploads/

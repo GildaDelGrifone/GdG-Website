@@ -5,7 +5,7 @@ backend:
   # base_url: https://URL-DEL-WORKER-OAUTH # opzionale, vedi README
 
 local_backend: true
-media_folder: public/uploads
+media_folder: public/uploads  # solo di passaggio: poi `npm run media:sync` (vedi README)
 public_folder: /uploads
 locale: it
 

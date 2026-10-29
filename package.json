@@ -8,6 +8,7 @@
     "build": "astro build",
     "check": "astro check",
     "import:wp": "node scripts/import-wp.mjs",
+    "media:sync": "bash scripts/sync-media.sh",
     "preview": "astro preview"
   },
   "dependencies": {

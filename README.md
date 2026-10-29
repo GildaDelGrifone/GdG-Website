@@ -17,7 +17,7 @@ npm run build    # controllo tipi + build in dist/
 | Contatti, orari, link Telegram, link CSV della ludoteca | `src/data/site.json` |
 | Manuali GdR | `src/data/manuali.json` |
 | Resoconti serate / News / Collaborazioni | `src/content/{serate,news,collaborazioni}/*.md` |
-| Immagini caricate | `public/uploads/` |
+| Immagini caricate | bucket R2 `gdg-media` (cartella locale `public/uploads/`, ignorata da git; carica con `npm run media:sync`) |
 
 ## Ludoteca (Google Sheet)
 
