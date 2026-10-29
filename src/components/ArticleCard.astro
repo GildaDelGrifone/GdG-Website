@@ -1,4 +1,6 @@
 ---
+import { imageSize } from '../lib/images';
+
 interface Props {
   href: string;
   title: string;
@@ -8,11 +10,12 @@ interface Props {
 }
 
 const { href, title, date, excerpt, cover } = Astro.props;
+const size = await imageSize(cover);
 const dateLabel = date.toLocaleDateString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', timeZone: 'UTC' });
 ---
 
 <a class="card article" href={href}>
-  {cover && <img src={cover} alt="" loading="lazy" />}
+  {cover && <img src={cover} alt="" loading="lazy" decoding="async" {...size} />}
   <time datetime={date.toISOString()}>{dateLabel}</time>
   <h3>{title}</h3>
   {excerpt && <p class="muted">{excerpt}</p>}

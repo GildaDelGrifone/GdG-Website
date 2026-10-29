@@ -5,8 +5,16 @@ backend:
   # base_url: https://URL-DEL-WORKER-OAUTH # opzionale, vedi README
 
 local_backend: true
-media_folder: public/uploads  # solo di passaggio: poi `npm run media:sync` (vedi README)
+# Le immagini vivono nel bucket R2 (vedi README). La cartella locale serve solo come libreria di base.
+media_folder: public/uploads
 public_folder: /uploads
+media_libraries:
+  cloudflare_r2:
+    access_key_id: 66c49b8ff0fd3883172b1f1550b2a47e # non è un segreto; la Secret Access Key viene chiesta nel browser
+    bucket: gdg-media
+    account_id: 8a88c6a1491016dccb808bd6065ab61a
+    public_url: https://pub-78d1bc1209984397b893f711b29f8ca9.r2.dev
+    prefix: cms/
 locale: it
 
 collections:

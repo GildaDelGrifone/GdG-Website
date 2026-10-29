@@ -44,6 +44,7 @@ I post già importati vengono saltati; un link sbagliato viene segnalato senza f
 1. Il repository GitHub è già impostato in `public/admin/config.yml` (`backend.repo`).
 2. Prova in locale: `npm run dev`, poi in un secondo terminale `npx @sveltia/cms-proxy` (o usa il pulsante di login locale) e apri `/admin`.
 3. In produzione: login GitHub con token personale, oppure un proxy OAuth (es. `sveltia-cms-auth` su Cloudflare Workers) indicato in `backend.base_url`.
+4. **Immagini**: il CMS le carica direttamente nel bucket R2 `gdg-media` (cartella `cms/`). Nel selettore immagini scegli "Cloudflare R2"; la prima volta chiede la *Secret Access Key* del token R2, che va consegnata in privato (non è nel repository). Il bucket deve avere una policy CORS che consenta l'origine del sito (`https://www.gildadelgrifonetorino.it`, l'indirizzo `workers.dev` e `http://localhost:4321`, metodi GET/PUT/HEAD/DELETE).
 
 ## Pubblicazione
 
