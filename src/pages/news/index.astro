@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import ArticleCard from '../../components/ArticleCard.astro';
+import { articlePath } from '../../lib/urls';
 
 const news = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
 ---
@@ -11,7 +12,7 @@ const news = (await getCollection('news')).sort((a, b) => b.data.date.valueOf() 
     <h1>News</h1>
     {news.length ? (
       <div class="grid">
-        {news.map((n) => <ArticleCard href={`/news/${n.id}`} {...n.data} />)}
+        {news.map((n) => <ArticleCard href={articlePath('news', n)} {...n.data} />)}
       </div>
     ) : <p class="muted">Nessuna news pubblicata.</p>}
   </div>

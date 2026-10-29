@@ -3,10 +3,11 @@ import { getCollection, render } from 'astro:content';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { articleSchema } from '../../lib/schema';
 import { imageSize } from '../../lib/images';
+import { articleStaticPaths } from '../../lib/urls';
 
 export async function getStaticPaths() {
   const serate = await getCollection('serate');
-  return serate.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+  return articleStaticPaths(serate);
 }
 
 const { entry } = Astro.props;

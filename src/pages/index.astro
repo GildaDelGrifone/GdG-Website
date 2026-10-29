@@ -5,6 +5,7 @@ import ArticleCard from '../components/ArticleCard.astro';
 import OpeningHours from '../components/OpeningHours.astro';
 import TelegramButton from '../components/TelegramButton.astro';
 import site from '../data/site.json';
+import { articlePath } from '../lib/urls';
 
 const byDate = <T extends { data: { date: Date } }>(a: T, b: T) => b.data.date.valueOf() - a.data.date.valueOf();
 const serate = (await getCollection('serate')).sort(byDate).slice(0, 3);
@@ -50,7 +51,7 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 3);
     <h2>Ultime serate</h2>
     {serate.length ? (
       <div class="grid">
-        {serate.map((s) => <ArticleCard href={`/serate/${s.id}`} {...s.data} />)}
+        {serate.map((s) => <ArticleCard href={articlePath('serate', s)} {...s.data} />)}
       </div>
     ) : <p class="muted">Nessuna serata pubblicata.</p>}
     <p><a href="/serate">Tutte le serate →</a></p>
@@ -60,7 +61,7 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 3);
     <h2>News</h2>
     {news.length ? (
       <div class="grid">
-        {news.map((n) => <ArticleCard href={`/news/${n.id}`} {...n.data} />)}
+        {news.map((n) => <ArticleCard href={articlePath('news', n)} {...n.data} />)}
       </div>
     ) : <p class="muted">Nessuna news pubblicata.</p>}
     <p><a href="/news">Tutte le news →</a></p>
