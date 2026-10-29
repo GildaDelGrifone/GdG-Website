@@ -36,6 +36,7 @@ collections:
         fields:
           - { name: gioco, label: Gioco, widget: string }
           - { name: tipo, label: Tipo, widget: select, options: [{ label: Gioco di ruolo, value: gdr }, { label: Gioco da tavolo, value: tavolo }] }
+          - { name: link, label: Link Telegram, widget: string, required: false }
           - { name: immagine, label: Immagine, widget: image, required: false }
       - { name: body, label: Resoconto, widget: markdown }
 

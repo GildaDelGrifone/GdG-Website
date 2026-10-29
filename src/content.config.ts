@@ -16,6 +16,7 @@ const serate = defineCollection({
         z.object({
           gioco: z.string(),
           tipo: z.enum(['gdr', 'tavolo']),
+          link: z.string().url().optional(),
           immagine: z.string().optional(),
         }),
       )

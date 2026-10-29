@@ -20,7 +20,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 - `public/admin/` is the Sveltia CMS (`config.yml`, pinned in `index.html`). `wrangler.jsonc` is the Cloudflare config.
 
 ## Content model
-- `serate`: `title`, `date`, `cover?`, `excerpt?`, `tavoli?` (list of `{gioco, tipo: 'gdr'|'tavolo', immagine?}`), Markdown body. File name `YYYY-MM-DD-<slug>.md`.
+- `serate`: `title`, `date`, `cover?`, `excerpt?`, `tavoli?` (list of `{gioco, tipo: 'gdr'|'tavolo', link?, immagine?}`; `link` is the event's Telegram link and turns the game name into a hyperlink), Markdown body. File name `YYYY-MM-DD-<slug>.md`.
 - `news`: same without `tavoli`. File name `YYYY-MM-<slug>.md`.
 - `collaborazioni`: `nome`, `logo`, `url?`, `descrizione`, `ordine` (default 100). The collection is currently empty, which only causes a harmless build warning.
 

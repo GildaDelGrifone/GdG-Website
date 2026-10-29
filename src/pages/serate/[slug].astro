@@ -34,7 +34,10 @@ const dateLabel = date.toLocaleDateString('it-IT', { weekday: 'long', day: 'nume
     {tavoli?.length ? (
       <ul class="tavoli">
         {tavoli.map((t) => (
-          <li><strong>{t.gioco}</strong> <span class="tag">{t.tipo === 'gdr' ? 'Gioco di ruolo' : 'Gioco da tavolo'}</span></li>
+          <li>
+            {t.link ? <a href={t.link} rel="noopener"><strong>{t.gioco}</strong></a> : <strong>{t.gioco}</strong>}
+            <span class="tag">{t.tipo === 'gdr' ? 'Gioco di ruolo' : 'Gioco da tavolo'}</span>
+          </li>
         ))}
       </ul>
     ) : null}
