@@ -18,7 +18,7 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 3);
 >
   <section class="hero">
     <div class="container">
-      <img src="/logo.png" alt="Logo della Gilda del Grifone" width="120" height="120" />
+      <img src="/logo-hero.webp" alt="Logo della Gilda del Grifone" width="800" height="573" fetchpriority="high" />
       <h1>Gilda del Grifone Torino</h1>
       <p class="tagline">{site.tagline}</p>
       <p class="lead">
@@ -70,7 +70,7 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 3);
 
 <style>
   .hero { text-align: center; padding: 72px 0 56px; background: radial-gradient(ellipse at top, #2a3a55 0%, var(--bg) 70%); }
-  .hero img { margin: 0 auto 16px; border-radius: 16px; }
+  .hero img { width: min(420px, 85%); height: auto; margin: 0 auto 8px; }
   .tagline { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin: -0.2em 0 1em; }
   .lead { max-width: 640px; margin: 0 auto 24px; color: var(--muted); font-size: 1.1rem; }
   .info { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
