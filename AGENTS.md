@@ -12,7 +12,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 ## Code map
 - `src/pages/`: `index`, `chi-siamo`, `gioco-di-ruolo-torino`, `giochi-da-tavolo-torino`, `collaborazioni`, `404`, `news/`, `serate/` (`[slug]` + paginated `[...page]`, 12 per page), `rss.xml.ts`, `games.json.ts` (build-time snapshot of the games list).
 - `src/layouts/BaseLayout.astro`: head, SEO, Open Graph/Twitter, JSON-LD. Props: `title`, `seoTitle`, `description`, `image`, `schema`, `type`, `published`, `noindex`, `breadcrumbs`.
-- `src/lib/`: `urls.ts` (article URLs), `schema.ts` (schema.org nodes), `images.ts` (`imageSize`, reads local files or fetches remote ones at build time, cached).
+- `src/lib/`: `urls.ts` (article URLs), `schema.ts` (schema.org nodes), `images.ts` (`imageSize`, reads local files or fetches remote ones at build time, cached), `seo.ts` (`pageTitle`: site-name suffix only if the title stays within 60 characters; `metaDescription`: pads under 70 and cuts over 160), `rehype-image-size.ts` (adds width/height and lazy loading to images inside Markdown bodies).
 - `src/scripts/game-library.ts`: client-side games library (CSV parsing, filters).
 - `src/components/`: Header, Footer, OpeningHours, TelegramButton, ArticleCard.
 - `src/data/`: `site.json`, `manuali.json`, `chi-siamo.json`. `src/styles/global.css` holds the design tokens (CSS variables).
@@ -27,6 +27,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 ## Rules that are not obvious
 - **Article URLs have no date**: `/serate/<slug>/`, `/news/<slug>/`. Always go through `articleSlug`, `articlePath` and `articleStaticPaths` in `src/lib/urls.ts`; never build links from `entry.id`. The build fails on duplicate slugs. The owner decided not to add redirects for old WordPress or dated URLs, so don't add any.
 - **SEO**: Home, Chi siamo, Gioco di ruolo and Ludoteca keep the old WordPress titles and descriptions via `seoTitle`/`description`; they were chosen deliberately, so don't reword them. The canonical host is `https://www.gildadelgrifonetorino.it` (the bare domain redirects there). Structured data comes from `src/lib/schema.ts` and is built from `site.json`.
+- **Share image**: `public/og.png` (1200×630, the gold logo from `public/logo-full.png` on the site's dark background) is the default `og:image`; articles use their cover. Regenerate it with `sharp` if the logo changes.
 - **Single source for facts**: address, phone, email, Telegram link and opening hours live only in `src/data/site.json`. The home page, footer, "open now" widget and JSON-LD read from it, so don't hardcode them.
 - **Privacy**: the games library reads the published CSV of the Google Sheet tab "Elenco Pubblico" (`site.json` → `sheetCsvUrl`), and only the whitelisted columns `ID, TITOLO, CATEGORIA, DESCRIZIONE, ARMADIO, STATUS` (`parseGames`). The other tabs hold member data (name, phone, mail). Never publish them and never widen the whitelist.
 - **Images** live in the Cloudflare R2 bucket `gdg-media`, served at `https://media.gildadelgrifonetorino.it`. Posts reference them by absolute URL. `public/uploads/` is git-ignored staging only. Never commit images; add them through the CMS (R2 media library, folder `cms/`) or the import script plus `npm run media:sync`.

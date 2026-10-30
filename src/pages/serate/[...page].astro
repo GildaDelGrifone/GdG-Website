@@ -11,9 +11,14 @@ export const getStaticPaths = (async ({ paginate }) => {
 }) satisfies GetStaticPaths;
 
 const { page } = Astro.props;
+// Ogni pagina dell'elenco ha titolo e descrizione propri.
+const n = page.currentPage;
+const title = n > 1 ? `Serate (pagina ${n})` : 'Serate';
+const base = 'I resoconti delle serate della Gilda del Grifone: tavoli, giochi e novità.';
+const description = n > 1 ? `Pagina ${n} di ${page.lastPage}. ${base}` : base;
 ---
 
-<BaseLayout title="Serate" description="I resoconti delle serate della Gilda del Grifone: tavoli, giochi e novità.">
+<BaseLayout title={title} description={description}>
   <div class="container section">
     <h1>Eventi della serata</h1>
     <p class="muted">I resoconti delle nostre serate: quali giochi si sono giocati e cosa è successo ai tavoli.</p>

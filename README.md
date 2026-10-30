@@ -42,6 +42,8 @@ I vecchi indirizzi di WordPress non vengono reindirizzati: le pagine principali 
 - I titoli e le descrizioni di Home, Chi siamo, Gioco di ruolo e Ludoteca sono quelli del vecchio sito (`seoTitle` nelle pagine): non cambiarli senza motivo.
 - `BaseLayout.astro` aggiunge canonical, Open Graph e Twitter card; gli articoli hanno anche `og:type=article` e le briciole di pane.
 - `src/lib/schema.ts` genera i dati strutturati (associazione con indirizzo e orari presi da `site.json`, sito web, articolo, briciole di pane).
+- Il nome del sito si aggiunge al titolo solo se resta entro 60 caratteri; le descrizioni vengono portate tra 70 e 160 caratteri (`src/lib/seo.ts`). Le immagini nel testo degli articoli ricevono `width`/`height` in fase di build (`src/lib/rehype-image-size.ts`).
+- Immagine di anteprima per i social: `public/og.png` (1200×630, logo su sfondo scuro; il logo completo è `public/logo-full.png`). Gli articoli usano la propria copertina.
 - Sitemap, feed RSS (`/rss.xml`) e `robots.txt` (blocca solo `/admin/`).
 
 ## Ludoteca (Google Sheet)
