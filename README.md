@@ -66,6 +66,10 @@ npm run media:sync                             # DOPO l'import: carica le immagi
 ```
 
 I post già importati vengono saltati; un link sbagliato viene segnalato senza fermare gli altri.
+Lo script converte anche gli shortcode dei vecchi plugin (`[us_image]` diventa un'immagine, `[pdf-embedder]` un link al PDF scaricato) e comprime i PNG pesanti.
+
+Se il dominio punta già al nuovo sito, il vecchio WordPress risponde ancora direttamente all'indirizzo del suo server: si usa `WP_IP`
+(`WP_IP=91.134.222.241 npm run import:wp -- --collection news scripts/links_varie.txt`). Funziona finché l'hosting Serverlet è attivo.
 `media:sync` usa `aws s3 sync` e le credenziali in `.bucketkey` (`R2_ACCESS_KEY_ID`, `R2_SECRET_ACCESS_KEY`, `R2_ENDPOINT`); il file è ignorato da git e **non va mai committato**.
 
 ## CMS
