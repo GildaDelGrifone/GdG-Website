@@ -1,8 +1,8 @@
 ---
-title: "Malifaux Day Sabato 21 ottobre 2017"
+title: Malifaux Day Sabato 21 Ottobre 2017
 date: 2017-10-17
-cover: "https://media.gildadelgrifonetorino.it/news/malifaux-day-sabato-21-ottobre-2017/premi.jpg"
-excerpt: "La Gilda del Grifone, in collaborazione con Wyrd Edizioni, organizza un evento ufficiale per la presentazione del gioco di miniature e del gioco di ruolo…"
+excerpt: La Gilda del Grifone, in collaborazione con Wyrd Edizioni, organizza un evento ufficiale per la presentazione del gioco di miniature e del gioco di ruolo…
+cover: https://media.gildadelgrifonetorino.it/news/malifaux-day-sabato-21-ottobre-2017/premi.jpg
 ---
 
 La Gilda del Grifone, in collaborazione con Wyrd Edizioni, organizza un evento ufficiale per la presentazione del gioco di miniature e del gioco di ruolo ambientati nel mondo di Malifaux.
