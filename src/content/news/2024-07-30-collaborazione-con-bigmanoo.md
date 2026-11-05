@@ -9,7 +9,7 @@ Speriamo che le vostre sessioni di gioco procedano a gonfie vele! Oggi vogliamo 
 
 ## Dove trovare il vostro materiale preferito
 
-Come molti di voi già sapranno, **BigManoo** è una realtà torinese ricca di proposte per ogni appassionato. La comodità di questa collaborazione sta anche nella vicinanza: oltre al punto vendita di **Via Malta 8C**, il negozio dispone di una sede molto vicina alla nostra associazione, in **Via Ricaldone 54**. Che siate in cerca di una nuova scatola da collezione o di un regalo a tema, avrete solo l'imbarazzo della scelta tra i tantissimi marchi trattati.
+Come molti di voi già sapranno, **BigManoo** è una realtà torinese ricca di proposte per ogni appassionato. La comodità di questa collaborazione sta anche nella vicinanza: oltre al punto vendita di **Via Malta 8C**, il negozio dispone di una sede molto vicina alla nostra associazione, in **Via Ricaldone 54**. Che siate in cerca di un gioco, di un fumetto o di un regalo a tema, vi basterà fare un salto in negozio.
 
 ## Come usufruire dello sconto
 
