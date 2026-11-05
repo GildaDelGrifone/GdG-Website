@@ -1,11 +1,10 @@
 ---
-title: "Nuova collaborazione con Aces Games"
+title: Nuova collaborazione con Aces Games
 date: 2026-10-02
-cover: "https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-scaled.png"
-excerpt: "Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione! La Gilda del Grifone…"
+excerpt: Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione! La Gilda del Grifone…
+cover: https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-scaled.png
 ---
 
-[![La Gilda del Grifone e Aces Games: nuova collaborazione](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)
 
 #### Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione!
 
