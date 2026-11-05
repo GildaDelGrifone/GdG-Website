@@ -1,3 +1,33 @@
 # Redirect 301 (Cloudflare): il vecchio indirizzo con il refuso "ages" porta a quello corretto.
 /news/collaborazione-con-ages-games/ /news/collaborazione-con-aces-games/ 301
 /news/collaborazione-con-ages-games /news/collaborazione-con-aces-games/ 301
+
+# Redirect 301 (Cloudflare): le news rimosse (pulizia del 2026) portano all'elenco delle news.
+/news/gilda-boardgames-championship/ /news/ 301
+/news/gilda-boardgames-championship /news/ 301
+/news/gilda-boardgames-championship-2018/ /news/ 301
+/news/gilda-boardgames-championship-2018 /news/ 301
+/news/model-expo-torino-2018-area-games/ /news/ 301
+/news/model-expo-torino-2018-area-games /news/ 301
+/news/celtic-corvo-nero/ /news/ 301
+/news/celtic-corvo-nero /news/ 301
+/news/come-nasce-unavventura/ /news/ 301
+/news/come-nasce-unavventura /news/ 301
+/news/crossdoom-lanello/ /news/ 301
+/news/crossdoom-lanello /news/ 301
+/news/il-lungo-viaggio-leggenda-o-oblio/ /news/ 301
+/news/il-lungo-viaggio-leggenda-o-oblio /news/ 301
+/news/il-ritorno-degli-dei/ /news/ 301
+/news/il-ritorno-degli-dei /news/ 301
+/news/sciammannati/ /news/ 301
+/news/sciammannati /news/ 301
+/news/torneo-bang-domenica-22-aprile-modelexpo/ /news/ 301
+/news/torneo-bang-domenica-22-aprile-modelexpo /news/ 301
+/news/torneo-risiko-modelexpo-sabato-21-aprile-2018/ /news/ 301
+/news/torneo-risiko-modelexpo-sabato-21-aprile-2018 /news/ 301
+/news/torneo-7wonders-duel-gilda-del-grifone/ /news/ 301
+/news/torneo-7wonders-duel-gilda-del-grifone /news/ 301
+/news/morituri-te-salutant/ /news/ 301
+/news/morituri-te-salutant /news/ 301
+/news/noi-siamo-omega/ /news/ 301
+/news/noi-siamo-omega /news/ 301

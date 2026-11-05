@@ -1,14 +1,12 @@
 ---
-title: "La Notte del Grifone"
+title: "La Notte del Grifone 2019"
 date: 2019-03-20
 cover: "https://media.gildadelgrifonetorino.it/news/la-notte-del-grifone/header-evento.png"
-excerpt: "Il 19 aprile, nella sua sede storica di Via Ada Negri 8/a, la Gilda del Grifone è lieta di presentare il suo evento gratuito di gioco di ruolo: La notte del…"
+excerpt: "La Notte del Grifone, evento gratuito di gioco di ruolo del 19 aprile 2019 nella sede storica della Gilda: nove tavoli, nove storie, nove sistemi."
 ---
 
-Il 19 aprile, nella sua sede storica di Via Ada Negri 8/a, la Gilda del Grifone è lieta di presentare il suo evento gratuito di gioco di ruolo: La notte del grifone.
+Il 19 aprile 2019, nella sua sede storica di via Ada Negri 8/a, la Gilda del Grifone ha presentato il suo evento gratuito di gioco di ruolo: La Notte del Grifone.
 
-L’evento inizia alle 20:00 per concludersi a mezzanotte circa.
+L’evento è iniziato alle 20:00 e si è concluso verso mezzanotte.
 
 Nove tavoli di gioco di ruolo, nove storie, nove sistemi tra i quali scegliere il proprio preferito.
-
-per prenotarsi all’evento cliccate qui: [https://www.facebook.com/events/331578644133161/](https://www.facebook.com/events/331578644133161/) andate su “discussione” e prenotatevi con un commento: i posti sono in esaurimento, affrettatevi!

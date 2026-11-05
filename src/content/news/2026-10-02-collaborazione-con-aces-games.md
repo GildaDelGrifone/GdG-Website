@@ -1,5 +1,5 @@
 ---
-title: "Nuovi arrivi in Ludoteca: Nuova collaborazione con Aces Games!"
+title: "Nuova collaborazione con Aces Games"
 date: 2026-10-02
 cover: "https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-scaled.png"
 excerpt: "Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione! La Gilda del Grifone…"
