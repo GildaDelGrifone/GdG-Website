@@ -78,4 +78,11 @@ input, select {
 :focus-visible { outline: 2px solid var(--gold); outline-offset: 2px; }
 
 .prose { max-width: 720px; }
-.prose img { border-radius: var(--radius); margin: 1.5em 0; }
+.prose img {
+  /* Le foto in verticale non devono superare una schermata: altezza limitata, proporzioni e centratura mantenute */
+  width: auto;
+  max-width: 100%;
+  max-height: 420px;
+  border-radius: var(--radius);
+  margin: 1.5em auto;
+}
