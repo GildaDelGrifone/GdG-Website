@@ -18,6 +18,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 - `src/data/`: `site.json`, `manuali.json`, `chi-siamo.json`. `src/styles/global.css` holds the design tokens (CSS variables).
 - `src/content/{serate,news,collaborazioni}/*.md`, validated by `src/content.config.ts` (Zod).
 - `public/admin/` is the Sveltia CMS (`config.yml`, pinned in `index.html`). `wrangler.jsonc` is the Cloudflare config.
+- `public/_redirects` holds the Cloudflare 301 redirects (e.g. old article URLs after a rename); Astro copies it to `dist/`.
 
 ## Content model
 - `serate`: `title`, `date`, `cover?`, `excerpt?`, `tavoli?` (list of `{gioco, tipo: 'gdr'|'tavolo', link?, immagine?}`; `link` is the event's Telegram link and turns the game name into a hyperlink), Markdown body. File name `YYYY-MM-DD-<slug>.md`.

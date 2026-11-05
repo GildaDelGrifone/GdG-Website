@@ -1,0 +1,3 @@
+# Redirect 301 (Cloudflare): il vecchio indirizzo con il refuso "ages" porta a quello corretto.
+/news/collaborazione-con-ages-games/ /news/collaborazione-con-aces-games/ 301
+/news/collaborazione-con-ages-games /news/collaborazione-con-aces-games/ 301
