@@ -13,11 +13,11 @@ Questa unione nasce dal desiderio di alimentare un fuoco comune, un lancio di da
 
 ## Vantaggi per i nostri soci
 
-Grazie a questa splendida sinergia, tutti voi soci potrete beneficiare di uno sconto del 10% su una vasta gamma di prodotti presso i nostri partner. Potrete usufruire di questa agevolazione sull'acquisto di giochi da tavolo, giochi di ruolo, funko e gadget. Inoltre, lo sconto del 10% sarà applicato anche alle carte collezionabili, a condizione che venga raggiunta una spesa minima di 20 euro.
+Grazie a questa splendida sinergia, tutti voi soci potrete beneficiare di uno sconto del 10% su una vasta gamma di prodotti presso **Entra Game Cafè**. Potrete usufruire di questa agevolazione sull'acquisto di giochi da tavolo, giochi di ruolo, funko e gadget. Inoltre, lo sconto del 10% sarà applicato anche alle carte collezionabili, a condizione che venga raggiunta una spesa minima di 20 euro.
 
 ## Come usufruire della collaborazione
 
-Per scoprire le novità e approfondire le proposte che vi attendono, vi invitiamo a visitare i canali ufficiali del nostro partner. Potete restare aggiornati su tutto ciò che il mondo di **Entra Game Cafè** ha da offrirvi visitando la loro pagina al seguente link: [Visita Entra Game Cafè](https://www.instagram.com/entragamecafe).
+Potete trovare **Entra Game Cafè** in Piazza Gian Pietro Chironi 1, a Torino (10145). Per scoprire le novità e approfondire le proposte che vi attendono, vi invitiamo a visitare i canali ufficiali del nostro partner. Potete restare aggiornati su tutto ciò che il mondo di **Entra Game Cafè** ha da offrirvi visitando la loro pagina al seguente link: [Visita Entra Game Cafè](https://www.instagram.com/entragamecafe).
 
 Desideriamo esprimere il nostro più sentito ringraziamento al team di **Entra Game Cafè** per aver accolto con entusiasmo questa iniziativa, dimostrando una grande apertura verso la nostra realtà associativa e verso tutti i nostri membri.
 
