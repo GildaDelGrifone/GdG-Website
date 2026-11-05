@@ -9,13 +9,13 @@ Siamo davvero entusiasti di annunciare l'inizio di una prestigiosa alleanza per 
 
 ## Il vostro equipaggiamento ludico
 
-Grazie a questa collaborazione, potrete attingere all'enorme assortimento di **MagicMerchant.it** con un vantaggio esclusivo riservato a tutti voi. Che siate alla ricerca di nuovi dadi per le vostre avventure, di manuali di ambientazione per i vostri mondi preferiti, di espansioni per i board games che popolano le nostre serate o di bustine per proteggere le vostre carte più preziose, da oggi avrete una marcia in più.
+Grazie a questa collaborazione, potrete attingere al catalogo di **MagicMerchant.it** con un vantaggio esclusivo riservato a tutti voi. Che siate alla ricerca di nuovi dadi per le vostre avventure, di manuali di ambientazione per i vostri mondi preferiti, di espansioni per i board games che popolano le nostre serate o di bustine per proteggere le vostre carte più preziose, da oggi avrete una marcia in più.
 
 ## Come approfittare dello sconto
 
-Per celebrare questa unione, i nostri amici di **MagicMerchant.it** offrono a tutti i soci uno sconto immediato del 10% su tutto il catalogo presente sul loro sito. Per beneficiare di questa agevolazione, vi basterà utilizzare il codice **GILDADELGRIFONE** durante i vostri acquisti. [Visita MagicMerchant.it](https://magicmerchant.it) per iniziare la vostra ricerca tra le migliaia di proposte disponibili.
+Per celebrare questa unione, i nostri amici di **MagicMerchant.it** offrono a tutti i soci uno sconto immediato del 10% su tutto il catalogo presente sul loro sito. Per beneficiare di questa agevolazione, vi basterà utilizzare il codice **GILDADELGRIFONE** durante i vostri acquisti. [Visita MagicMerchant.it](https://magicmerchant.it) per iniziare la vostra ricerca tra le proposte disponibili.
 
-Ringraziamo sentenzialmente **MagicMerchant.it** per la disponibilità dimostrata verso la nostra realtà. Vi ricordiamo che la nostra sede di **Via Ada Negri 8/A** a **Torino** è aperta il **lunedì**, **mercoledì** e **venerdì** dalle **20:45** alle **24:00** per discutere i vostri nuovi acquisti o per organizzare sessioni indimenticabili.
+Ringraziamo sentitamente **MagicMerchant.it** per la disponibilità dimostrata verso la nostra realtà. Vi ricordiamo che la nostra sede di **Via Ada Negri 8/A** a **Torino** è aperta il **lunedì**, **mercoledì** e **venerdì** dalle **20:45** alle **24:00** per discutere i vostri nuovi acquisti o per organizzare sessioni indimenticabili.
 
 ---
 
