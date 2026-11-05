@@ -5,7 +5,7 @@ cover: "https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-game
 excerpt: "Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione! La Gilda del Grifone…"
 ---
 
-[![](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)
+[![La Gilda del Grifone e Aces Games: nuova collaborazione](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/GdGXAcesGames-1-scaled.png)
 
 #### Siamo entusiasti di annunciare una nuova, fantastica collaborazione che andrà ad arricchire le serate di gioco della nostra associazione!
 
@@ -17,7 +17,7 @@ Ecco nel dettaglio i nuovi titoli che potrete intavolare da noi:
 
 ### La prima trilogia di VHS (Very Horror Stories)
 
-![](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/Aces-Games-VHS-Very-Horror-Stories-gioco-di-ruolo-horror-presentazione-prodotto-sito-copia.webp)
+![VHS (Very Horror Stories): la prima trilogia](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/Aces-Games-VHS-Very-Horror-Stories-gioco-di-ruolo-horror-presentazione-prodotto-sito-copia.webp)
 
 Pronti a tornare negli anni ’70, ’80 e ’90? _VHS_ è un gioco di ruolo horror che vi catapulta direttamente nelle atmosfere dei classici film slasher e mostruosi dell’epoca. Le inconfondibili scatole a forma di videocassetta contengono tutto il necessario per serate ad alta tensione. Avete a disposizione l’intera prima trilogia: preparate i popcorn e cercate di sopravvivere fino ai titoli di coda.
 
@@ -29,7 +29,7 @@ Se preferite atmosfere distopiche e cariche di elettricità, _Heavy Sugar_ è il
 
 ### Links of Sin
 
-![](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/Aces-Games-Links-of-Sin-gdr-strategico-con-carte-da-poker-apocalisse.webp)
+![Links of Sin - Aces Games](https://media.gildadelgrifonetorino.it/news/collaborazione-con-ages-games/Aces-Games-Links-of-Sin-gdr-strategico-con-carte-da-poker-apocalisse.webp)
 
 Un gioco di ruolo che vi porterà a esplorare dinamiche cupe e legami indissolubili, affrontando le conseguenze delle proprie scelte in un setting maturo e introspettivo.
 
