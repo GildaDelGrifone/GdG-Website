@@ -50,7 +50,7 @@ const total = manuali.reduce((n, s) => n + s.titoli.length, 0);
 </style>
 
 <script>
-  const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/g, '').toLowerCase();
+  const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
   const input = document.getElementById('q') as HTMLInputElement;
   const empty = document.getElementById('empty')!;
   const systems = [...document.querySelectorAll<HTMLDetailsElement>('.system')];

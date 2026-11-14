@@ -48,7 +48,7 @@ export interface Filters {
   soloDisponibili: boolean;
 }
 
-const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/g, '').toLowerCase();
+const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 export function filterGames(games: Game[], f: Filters): Game[] {
   const q = norm(f.query.trim());
