@@ -134,14 +134,18 @@ const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
     const hours: Hour[] = JSON.parse(el.dataset.hours ?? '[]');
     const specials: Special[] = JSON.parse(el.dataset.special ?? '[]');
     const todaySpecial = specials.find((s) => s.date === today);
-    const row = el.querySelector<HTMLElement>(`li[data-day="${dayIndex}"]`);
-    row?.classList.add('today');
-    // Se oggi c'è un'apertura straordinaria, la riga del giorno mostra quegli orari invece di "Chiuso".
-    if (row && todaySpecial) {
+    el.querySelector(`li[data-day="${dayIndex}"]`)?.classList.add('today');
+    // La settimana mostrata va da oggi ai prossimi 6 giorni: se uno di quei giorni
+    // ha un'apertura straordinaria, la sua riga mostra quegli orari invece di "Chiuso".
+    el.querySelectorAll<HTMLElement>('li[data-day]').forEach((row) => {
+      const offset = (Number(row.dataset.day) - dayIndex + 7) % 7;
+      const date = new Date(Date.parse(today) + offset * 86_400_000).toISOString().slice(0, 10);
+      const s = specials.find((x) => x.date === date);
+      if (!s) return;
       row.classList.remove('closed');
-      row.lastElementChild!.textContent = `${todaySpecial.open} – ${todaySpecial.close}`;
+      row.lastElementChild!.textContent = `${s.open} – ${s.close}`;
       row.title = 'Apertura straordinaria';
-    }
+    });
 
     // Aperture straordinarie: via quelle passate, nel footer solo il prossimo weekend.
     const special = el.querySelector<HTMLElement>('.special');
