@@ -11,15 +11,40 @@ const { compact = false } = Astro.props;
 // raggruppate per weekend: date consecutive finiscono nello stesso gruppo.
 const DAY = 86_400_000;
 const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date());
-const label = new Intl.DateTimeFormat('it-IT', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
-let group = -1;
-const upcoming = site.specialHours
+const fmt = (opts: Intl.DateTimeFormatOptions) => new Intl.DateTimeFormat('it-IT', { ...opts, timeZone: 'UTC' });
+const weekday = fmt({ weekday: 'short' });
+const dayMonth = fmt({ day: 'numeric', month: 'short' });
+const dayOnly = fmt({ day: 'numeric' });
+const month = fmt({ month: 'short' });
+
+const groups: (typeof site.specialHours)[] = [];
+site.specialHours
   .filter((s) => s.date >= today)
   .sort((a, b) => a.date.localeCompare(b.date))
-  .map((s, i, all) => {
-    if (i === 0 || Date.parse(s.date) - Date.parse(all[i - 1].date) > DAY) group++;
-    return { ...s, group, label: label.format(new Date(s.date)) };
+  .forEach((s, i, all) => {
+    if (i === 0 || Date.parse(s.date) - Date.parse(all[i - 1].date) > DAY) groups.push([]);
+    groups[groups.length - 1].push(s);
   });
+
+// Un weekend per riga: "14–15 nov", "31 ott – 1 nov" o "sab 14 nov" se è un giorno solo.
+const weekends = groups.map((days) => {
+  const first = new Date(days[0].date);
+  const last = new Date(days[days.length - 1].date);
+  const label =
+    days.length === 1
+      ? `${weekday.format(first)} ${dayMonth.format(first)}`
+      : month.format(first) === month.format(last)
+        ? `${dayOnly.format(first)}–${dayMonth.format(last)}`
+        : `${dayMonth.format(first)} – ${dayMonth.format(last)}`;
+  const hours = days.map((s) => `${weekday.format(new Date(s.date))} ${s.open}–${s.close}`).join(' · ');
+  return { start: days[0].date, end: days[days.length - 1].date, label, hours };
+});
+
+// Gli orari più frequenti si scrivono una volta sola sotto il titolo;
+// un weekend con orari diversi li mostra nella sua riga.
+const count = new Map<string, number>();
+weekends.forEach((w) => count.set(w.hours, (count.get(w.hours) ?? 0) + 1));
+const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
 ---
 
 <div
@@ -36,16 +61,20 @@ const upcoming = site.specialHours
       </li>
     ))}
   </ul>
-  {upcoming.length > 0 && (
+  {weekends.length > 0 && (
     <div class="special">
       <p class="special-title">{compact ? 'Prossima apertura straordinaria' : 'Aperture straordinarie'}</p>
+      <p class="special-hours muted">{shared}</p>
       <ul>
-        {upcoming.map((s) => (
-          <li data-date={s.date} data-group={s.group} hidden={compact && s.group > 0}>
-            <span>{s.label}</span>
-            <span>{s.open} – {s.close}</span>
-          </li>
-        ))}
+        {weekends.map((w, i) => {
+          const own = w.hours !== shared;
+          return (
+            <li data-start={w.start} data-end={w.end} data-own={own ? '' : undefined} hidden={compact && i > 0}>
+              <span>{w.label}</span>
+              {own && <span>{w.hours}</span>}
+            </li>
+          );
+        })}
       </ul>
     </div>
   )}
@@ -63,6 +92,7 @@ const upcoming = site.specialHours
   .status.open { color: var(--ok); }
   .status.shut { color: var(--muted); }
   .special-title { font-weight: 700; margin: 16px 0 4px; }
+  .special-hours { font-size: 0.85rem; margin: 0 0 4px; }
   .note { font-size: 0.85rem; margin-bottom: 0; }
   .compact li { padding: 3px 0; font-size: 0.9rem; }
   .compact .special-title { margin-top: 12px; font-size: 0.9rem; }
@@ -116,12 +146,19 @@ const upcoming = site.specialHours
     // Aperture straordinarie: via quelle passate, nel footer solo il prossimo weekend.
     const special = el.querySelector<HTMLElement>('.special');
     if (special) {
-      const rows = [...special.querySelectorAll<HTMLElement>('li[data-date]')];
-      rows.filter((li) => li.dataset.date! < today).forEach((li) => li.remove());
+      const rows = [...special.querySelectorAll<HTMLElement>('li[data-end]')];
+      rows.filter((li) => li.dataset.end! < today).forEach((li) => li.remove());
       const left = rows.filter((li) => li.isConnected);
       if (!left.length) special.remove();
-      if (el.classList.contains('compact')) left.forEach((li) => (li.hidden = li.dataset.group !== left[0].dataset.group));
-      left.find((li) => li.dataset.date === today)?.classList.add('today');
+      else {
+        if (el.classList.contains('compact')) {
+          left.forEach((li, i) => (li.hidden = i > 0));
+          // Se il prossimo weekend ha orari suoi, sono già nella riga.
+          const shared = special.querySelector<HTMLElement>('.special-hours');
+          if (shared) shared.hidden = left[0].dataset.own !== undefined;
+        }
+        left.find((li) => li.dataset.start! <= today && today <= li.dataset.end!)?.classList.add('today');
+      }
     }
 
     const todaySlot: Slot | undefined = todaySpecial ?? hours.find((h) => h.day === dayIndex);
