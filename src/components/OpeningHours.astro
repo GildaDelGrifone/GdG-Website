@@ -103,7 +103,15 @@ const upcoming = site.specialHours
   document.querySelectorAll<HTMLElement>('.hours').forEach((el) => {
     const hours: Hour[] = JSON.parse(el.dataset.hours ?? '[]');
     const specials: Special[] = JSON.parse(el.dataset.special ?? '[]');
-    el.querySelector(`li[data-day="${dayIndex}"]`)?.classList.add('today');
+    const todaySpecial = specials.find((s) => s.date === today);
+    const row = el.querySelector<HTMLElement>(`li[data-day="${dayIndex}"]`);
+    row?.classList.add('today');
+    // Se oggi c'è un'apertura straordinaria, la riga del giorno mostra quegli orari invece di "Chiuso".
+    if (row && todaySpecial) {
+      row.classList.remove('closed');
+      row.lastElementChild!.textContent = `${todaySpecial.open} – ${todaySpecial.close}`;
+      row.title = 'Apertura straordinaria';
+    }
 
     // Aperture straordinarie: via quelle passate, nel footer solo il prossimo weekend.
     const special = el.querySelector<HTMLElement>('.special');
@@ -116,7 +124,6 @@ const upcoming = site.specialHours
       left.find((li) => li.dataset.date === today)?.classList.add('today');
     }
 
-    const todaySpecial = specials.find((s) => s.date === today);
     const todaySlot: Slot | undefined = todaySpecial ?? hours.find((h) => h.day === dayIndex);
     const prevSlot: Slot | undefined =
       specials.find((s) => s.date === yesterday) ?? hours.find((h) => h.day === (dayIndex + 6) % 7);
