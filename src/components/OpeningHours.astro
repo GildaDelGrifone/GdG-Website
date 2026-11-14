@@ -6,9 +6,27 @@ interface Props {
 }
 
 const { compact = false } = Astro.props;
+
+// Aperture straordinarie future (rispetto al giorno della build, ora di Torino),
+// raggruppate per weekend: date consecutive finiscono nello stesso gruppo.
+const DAY = 86_400_000;
+const today = new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date());
+const label = new Intl.DateTimeFormat('it-IT', { weekday: 'short', day: 'numeric', month: 'short', timeZone: 'UTC' });
+let group = -1;
+const upcoming = site.specialHours
+  .filter((s) => s.date >= today)
+  .sort((a, b) => a.date.localeCompare(b.date))
+  .map((s, i, all) => {
+    if (i === 0 || Date.parse(s.date) - Date.parse(all[i - 1].date) > DAY) group++;
+    return { ...s, group, label: label.format(new Date(s.date)) };
+  });
 ---
 
-<div class:list={['hours', { compact }]} data-hours={JSON.stringify(site.hours)}>
+<div
+  class:list={['hours', { compact }]}
+  data-hours={JSON.stringify(site.hours)}
+  data-special={JSON.stringify(site.specialHours)}
+>
   <p class="status" aria-live="polite"></p>
   <ul>
     {site.hours.map((h) => (
@@ -18,28 +36,50 @@ const { compact = false } = Astro.props;
       </li>
     ))}
   </ul>
+  {upcoming.length > 0 && (
+    <div class="special">
+      <p class="special-title">{compact ? 'Prossima apertura straordinaria' : 'Aperture straordinarie'}</p>
+      <ul>
+        {upcoming.map((s) => (
+          <li data-date={s.date} data-group={s.group} hidden={compact && s.group > 0}>
+            <span>{s.label}</span>
+            <span>{s.open} – {s.close}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )}
   <p class="muted note">{site.hoursNote}</p>
 </div>
 
 <style>
   ul { list-style: none; margin: 0; padding: 0; }
   li { display: flex; justify-content: space-between; gap: 16px; padding: 6px 0; border-bottom: 1px solid var(--border); }
+  li[hidden] { display: none; }
   li.closed { color: var(--muted); }
   li.today { color: var(--gold); font-weight: 700; }
   .status { font-weight: 700; margin: 0 0 8px; }
   .status:empty { display: none; }
   .status.open { color: var(--ok); }
   .status.shut { color: var(--muted); }
+  .special-title { font-weight: 700; margin: 16px 0 4px; }
   .note { font-size: 0.85rem; margin-bottom: 0; }
   .compact li { padding: 3px 0; font-size: 0.9rem; }
+  .compact .special-title { margin-top: 12px; font-size: 0.9rem; }
 </style>
 
 <script>
-  // Evidenzia il giorno corrente e mostra se siamo aperti, usando l'ora di Torino.
-  type Hour = { day: number; open?: string; close?: string; closed?: boolean };
+  // Evidenzia il giorno corrente, nasconde le aperture straordinarie passate
+  // e mostra se siamo aperti, usando l'ora di Torino.
+  type Slot = { open?: string; close?: string; closed?: boolean };
+  type Hour = Slot & { day: number };
+  type Special = Slot & { date: string };
 
   const parts = new Intl.DateTimeFormat('en-GB', {
     timeZone: 'Europe/Rome',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
     weekday: 'short',
     hour: '2-digit',
     minute: '2-digit',
@@ -48,22 +88,47 @@ const { compact = false } = Astro.props;
   const get = (t: string) => parts.find((p) => p.type === t)?.value ?? '';
   const dayIndex = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(get('weekday'));
   const minutes = (Number(get('hour')) % 24) * 60 + Number(get('minute'));
+  const today = `${get('year')}-${get('month')}-${get('day')}`;
+  const yesterday = new Date(Date.parse(today) - 86_400_000).toISOString().slice(0, 10);
   const toMin = (s: string) => {
     const [h, m] = s.split(':').map(Number);
     return h * 60 + m;
   };
 
+  // Una chiusura prima dell'apertura (es. 20:00 – 00:30) finisce la notte dopo.
+  const overnight = (s?: Slot) => !!s && !s.closed && !!s.open && !!s.close && toMin(s.close) < toMin(s.open);
+  const isOpen = (s: Slot) =>
+    !s.closed && !!s.open && !!s.close && minutes >= toMin(s.open) && (overnight(s) || minutes < toMin(s.close));
+
   document.querySelectorAll<HTMLElement>('.hours').forEach((el) => {
     const hours: Hour[] = JSON.parse(el.dataset.hours ?? '[]');
+    const specials: Special[] = JSON.parse(el.dataset.special ?? '[]');
     el.querySelector(`li[data-day="${dayIndex}"]`)?.classList.add('today');
-    const today = hours.find((h) => h.day === dayIndex);
+
+    // Aperture straordinarie: via quelle passate, nel footer solo il prossimo weekend.
+    const special = el.querySelector<HTMLElement>('.special');
+    if (special) {
+      const rows = [...special.querySelectorAll<HTMLElement>('li[data-date]')];
+      rows.filter((li) => li.dataset.date! < today).forEach((li) => li.remove());
+      const left = rows.filter((li) => li.isConnected);
+      if (!left.length) special.remove();
+      if (el.classList.contains('compact')) left.forEach((li) => (li.hidden = li.dataset.group !== left[0].dataset.group));
+      left.find((li) => li.dataset.date === today)?.classList.add('today');
+    }
+
+    const todaySpecial = specials.find((s) => s.date === today);
+    const todaySlot: Slot | undefined = todaySpecial ?? hours.find((h) => h.day === dayIndex);
+    const prevSlot: Slot | undefined =
+      specials.find((s) => s.date === yesterday) ?? hours.find((h) => h.day === (dayIndex + 6) % 7);
     const status = el.querySelector<HTMLElement>('.status');
-    if (!status || !today) return;
-    if (!today.closed && today.open && today.close && minutes >= toMin(today.open) && minutes < toMin(today.close)) {
+    if (!status) return;
+    if ((overnight(prevSlot) && minutes < toMin(prevSlot!.close!)) || (todaySlot && isOpen(todaySlot))) {
       status.textContent = 'Siamo aperti ora!';
       status.classList.add('open');
-    } else if (!today.closed && today.open && minutes < toMin(today.open)) {
-      status.textContent = `Apriamo oggi alle ${today.open}`;
+    } else if (todaySlot && !todaySlot.closed && todaySlot.open && minutes < toMin(todaySlot.open)) {
+      status.textContent = todaySpecial
+        ? `Oggi apertura straordinaria alle ${todaySlot.open}`
+        : `Apriamo oggi alle ${todaySlot.open}`;
       status.classList.add('shut');
     } else {
       status.textContent = 'Al momento siamo chiusi';

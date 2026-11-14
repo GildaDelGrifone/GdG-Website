@@ -29,7 +29,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 - **Article URLs have no date**: `/serate/<slug>/`, `/news/<slug>/`. Always go through `articleSlug`, `articlePath` and `articleStaticPaths` in `src/lib/urls.ts`; never build links from `entry.id`. The build fails on duplicate slugs. The owner decided not to add redirects for old WordPress or dated URLs, so don't add any.
 - **SEO**: Home, Chi siamo, Gioco di ruolo and Ludoteca keep the old WordPress titles and descriptions via `seoTitle`/`description`; they were chosen deliberately, so don't reword them. The canonical host is `https://www.gildadelgrifonetorino.it` (the bare domain redirects there). Structured data comes from `src/lib/schema.ts` and is built from `site.json`.
 - **Share image**: `public/og.png` (1200×630, the gold logo from `public/logo-full.png` on the site's dark background) is the default `og:image`; articles use their cover. Regenerate it with `sharp` if the logo changes.
-- **Single source for facts**: address, phone, email, Telegram link and opening hours live only in `src/data/site.json`. The home page, footer, "open now" widget and JSON-LD read from it, so don't hardcode them.
+- **Single source for facts**: address, phone, email, Telegram link, opening hours and special openings (`specialHours`: one `{date, open, close}` per day; a `close` earlier than `open` ends the following night; past dates are hidden at build time and in the browser) live only in `src/data/site.json`. The home page, footer, "open now" widget and JSON-LD read from it, so don't hardcode them.
 - **Privacy**: the games library reads the published CSV of the Google Sheet tab "Elenco Pubblico" (`site.json` → `sheetCsvUrl`), and only the whitelisted columns `ID, TITOLO, CATEGORIA, DESCRIZIONE, ARMADIO, STATUS` (`parseGames`). The other tabs hold member data (name, phone, mail). Never publish them and never widen the whitelist.
 - **Images** live in the Cloudflare R2 bucket `gdg-media`, served at `https://media.gildadelgrifonetorino.it`. Posts reference them by absolute URL. `public/uploads/` is git-ignored staging only. Never commit images; add them through the CMS (R2 media library, folder `cms/`) or the import script plus `npm run media:sync`.
 - **Dates** are rendered with `timeZone: 'UTC'` so the day never shifts.
@@ -50,7 +50,7 @@ Astro 5, TypeScript strict, no UI framework, Italian UI (`lang="it"`). User-faci
 ## How to
 - **New page**: add `src/pages/<name>.astro` using `BaseLayout` with a `title`/`description` (or `seoTitle`), add it to `Header.astro`, and check it appears in `dist/sitemap-0.xml`.
 - **New content collection**: define it in `src/content.config.ts`, add it to `public/admin/config.yml`, and create the list and `[slug]` pages. Use `src/lib/urls.ts` for the URLs.
-- **Change opening hours or contacts**: edit `src/data/site.json` only.
+- **Change opening hours, special openings or contacts**: edit `src/data/site.json` only (or the CMS, "Impostazioni").
 - **Import old posts**: `npm run import:wp -- --collection serate scripts/links_serate.txt`, then `npm run media:sync`.
 
 ## Decisions and gotchas

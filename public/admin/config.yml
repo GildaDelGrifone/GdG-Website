@@ -117,3 +117,12 @@ collections:
               - { name: open, label: Apertura, widget: string, required: false }
               - { name: close, label: Chiusura, widget: string, required: false }
               - { name: closed, label: Chiuso, widget: boolean, default: false, required: false }
+          - name: specialHours
+            label: Aperture straordinarie
+            widget: list
+            required: false
+            hint: "Le date passate spariscono da sole dal sito. Una chiusura dopo mezzanotte (es. 00:30) vale per la notte successiva."
+            fields:
+              - { name: date, label: Data, widget: datetime, time_format: false, format: 'YYYY-MM-DD' }
+              - { name: open, label: 'Apertura (HH:MM)', widget: string }
+              - { name: close, label: 'Chiusura (HH:MM)', widget: string }

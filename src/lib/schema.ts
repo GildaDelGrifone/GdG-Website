@@ -35,6 +35,16 @@ export function siteSchema(origin: string): Json[] {
           opens: time(h.open!),
           closes: time(h.close!),
         })),
+      // Aperture straordinarie future (una chiusura prima dell'apertura vale per la notte dopo).
+      specialOpeningHoursSpecification: site.specialHours
+        .filter((s) => s.date >= new Intl.DateTimeFormat('en-CA', { timeZone: 'Europe/Rome' }).format(new Date()))
+        .map((s) => ({
+          '@type': 'OpeningHoursSpecification',
+          validFrom: s.date,
+          validThrough: s.date,
+          opens: time(s.open),
+          closes: time(s.close),
+        })),
       sameAs: [site.telegramUrl],
     },
     {
