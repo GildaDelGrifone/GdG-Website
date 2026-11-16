@@ -9,7 +9,7 @@ La **Gilda del Grifone** ha avviato una collaborazione con **ARSLUDICA**, catena
 
 ## I negozi ARSLUDICA
 
-ARSLUDICA ha sei punti vendita tra Torino e il Piemonte, oltre a un negozio online con spedizioni in tutta Italia. Sugli scaffali trovate giochi da tavolo, giochi di ruolo, carte collezionabili, manga e libri per bambini, con titoli di editori come Asmodee, DV Giochi, Cranio Creations, Ghenos Games e Hidden Games. In tutti i negozi della catena vengono anche organizzate dimostrazioni di giochi da tavolo.
+ARSLUDICA ha sei punti vendita a Torino, Chieri, Asti e Biella, oltre a un negozio online con spedizioni in tutta Italia. Sugli scaffali trovate giochi da tavolo, giochi di ruolo, carte collezionabili, manga e libri per bambini, con titoli di editori come Asmodee, DV Giochi, Cranio Creations, Ghenos Games e Hidden Games. In tutti i negozi della catena vengono anche organizzate dimostrazioni di giochi da tavolo.
 
 ## Il vantaggio per i soci
 
@@ -17,7 +17,7 @@ Per tutti i tesserati della Gilda c'è uno sconto dedicato del **10%** sull'acqu
 
 ## Come ottenere lo sconto
 
-Per applicare la riduzione del 10% vi basta mostrare la tessera della Gilda alla cassa al momento dell'acquisto.
+Per applicare la riduzione del 10% vi basta mostrare la tessera della Gilda.
 
 Lo sconto è valido in tutti i punti vendita fisici:
 
@@ -30,7 +30,7 @@ Condizioni da ricordare:
 - La riduzione si applica solo ai giochi da tavolo e ai giochi di ruolo.
 - Lo sconto non è valido sulle carte collezionabili (TCG).
 
-Per dare un'occhiata alle novità e al catalogo potete consultare la pagina [Instagram](https://www.instagram.com/arsludica_giochi/) o andare sul sito ufficiale: [Visita ARSLUDICA](https://www.arsludica.com).
+Per dare un'occhiata alle novità e al catalogo potete seguire ARSLUDICA su [Instagram](https://www.instagram.com/arsludica_giochi/) o visitare il loro [sito](https://www.arsludica.com).
 
 Grazie ad **ARSLUDICA** per il supporto ai nostri soci e alla nostra associazione.
 
