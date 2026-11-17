@@ -17,13 +17,13 @@ Al primo tavolo Andrea Marengo ha guidato "Lo Psicodramma": per aiutare la loro 
 *Andrea Marengo mentre conduce la sessione al primo tavolo.*
 
 ![Andrea Marengo visto di spalle mentre narra ai tre giocatori seduti al tavolo](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_3_5f3d72ba.jpg)
-*Un momento della narrazione al tavolo 1.*
+*Un momento della narrazione al primo tavolo.*
 
-Al secondo tavolo Fabio Marengo ha diretto "La Prova": una distesa di grano dorato e papaveri blu sotto un cielo rosso sangue ha accolto i personaggi, consapevoli di sognare ma senza memoria di essersi addormentati, tra figure bizzarre e un'ombra che li osservava ponendo una sola domanda: perché siete qui? Tutti i partecipanti si sono divertiti a esplorare queste storie oniriche.
+Al secondo tavolo Fabio Marengo ha diretto "La Prova": una distesa di grano dorato e papaveri blu sotto un cielo rosso sangue ha accolto i personaggi, consapevoli di sognare ma senza memoria di essersi addormentati, tra figure bizzarre e un'ombra che li osservava ponendo una sola domanda: perché siete qui? I giocatori di entrambi i tavoli si sono divertiti a esplorare queste storie oniriche.
 
 ## Il manuale in sede e i ringraziamenti
 
-Al termine delle partite Andrea e Fabio hanno lasciato in regalo all'associazione una copia del manuale di Dreamwalkers, che ora fa parte della sede della Gilda. Sul volume c'è la dedica autografa di Andrea firmata con il suo soprannome: *"Alla Gilda del Grifone! Che possiate vivere mille avventure nei Sogni! Master Siré"*.
+Andrea e Fabio ci hanno lasciato in regalo una copia del manuale di Dreamwalkers, che da ora trovate in sede. Sul volume c'è la dedica autografa di Andrea firmata con il suo soprannome: *"Alla Gilda del Grifone! Che possiate vivere mille avventure nei Sogni! Master Siré"*.
 
 ![Andrea Marengo con in mano il manuale di Dreamwalkers – L'Origine dei Mondi](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_4_84dd04a5.jpg)
 *Andrea Marengo con il manuale del gioco.*
