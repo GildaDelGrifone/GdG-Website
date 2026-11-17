@@ -45,6 +45,16 @@ const weekends = groups.map((days) => {
 const count = new Map<string, number>();
 weekends.forEach((w) => count.set(w.hours, (count.get(w.hours) ?? 0) + 1));
 const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
+
+// Nella versione completa si vedono i prossimi VISIBLE weekend, gli altri sotto "Mostra altre date".
+const VISIBLE = 3;
+const first = compact ? weekends : weekends.slice(0, VISIBLE);
+const rest = compact ? [] : weekends.slice(VISIBLE);
+const attrs = (w: (typeof weekends)[number]) => ({
+  'data-start': w.start,
+  'data-end': w.end,
+  'data-own': w.hours !== shared ? '' : undefined,
+});
 ---
 
 <div
@@ -62,20 +72,30 @@ const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
     ))}
   </ul>
   {weekends.length > 0 && (
-    <div class="special">
+    <div class="special" data-visible={VISIBLE}>
       <p class="special-title">{compact ? 'Prossima apertura straordinaria' : 'Aperture straordinarie'}</p>
       <p class="special-hours muted">{shared}</p>
       <ul>
-        {weekends.map((w, i) => {
-          const own = w.hours !== shared;
-          return (
-            <li data-start={w.start} data-end={w.end} data-own={own ? '' : undefined} hidden={compact && i > 0}>
-              <span>{w.label}</span>
-              {own && <span>{w.hours}</span>}
-            </li>
-          );
-        })}
+        {first.map((w, i) => (
+          <li {...attrs(w)} hidden={compact && i > 0}>
+            <span>{w.label}</span>
+            {w.hours !== shared && <span>{w.hours}</span>}
+          </li>
+        ))}
       </ul>
+      {rest.length > 0 && (
+        <details class="more">
+          <summary>Mostra altre date</summary>
+          <ul>
+            {rest.map((w) => (
+              <li {...attrs(w)}>
+                <span>{w.label}</span>
+                {w.hours !== shared && <span>{w.hours}</span>}
+              </li>
+            ))}
+          </ul>
+        </details>
+      )}
     </div>
   )}
   <p class="muted note">{site.hoursNote}</p>
@@ -94,6 +114,7 @@ const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
   .special-title { font-weight: 700; margin: 16px 0 4px; }
   .special-hours { font-size: 0.85rem; margin: 0 0 4px; }
   .note { font-size: 0.85rem; margin-bottom: 0; }
+  .more summary { margin-top: 8px; font-size: 0.85rem; color: var(--gold); cursor: pointer; }
   .compact li { padding: 3px 0; font-size: 0.9rem; }
   .compact .special-title { margin-top: 12px; font-size: 0.9rem; }
 </style>
@@ -155,6 +176,15 @@ const shared = [...count].sort((a, b) => b[1] - a[1])[0]?.[0];
       const left = rows.filter((li) => li.isConnected);
       if (!left.length) special.remove();
       else {
+        // Tolte le date passate, i primi weekend restano in vista e gli altri sotto "Mostra altre date".
+        const more = special.querySelector<HTMLElement>('details.more');
+        if (more) {
+          const visible = Number(special.dataset.visible);
+          const main = special.querySelector<HTMLElement>(':scope > ul')!;
+          const hidden = more.querySelector<HTMLElement>('ul')!;
+          left.forEach((li, i) => (i < visible ? main : hidden).append(li));
+          if (!hidden.children.length) more.remove();
+        }
         if (el.classList.contains('compact')) {
           left.forEach((li, i) => (li.hidden = i > 0));
           // Se il prossimo weekend ha orari suoi, sono già nella riga.

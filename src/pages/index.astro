@@ -30,15 +30,26 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 4);
   </section>
 
   <section class="section container info">
-    <div class="card">
-      <h2>Chi siamo</h2>
-      <p>
-        Siamo un luogo di ritrovo per chi ama giocare. Non c'è consumazione minima né quota serale: serve solo la tessera associativa,
-        valida un anno dall'iscrizione. I soci possono anche prendere in prestito giochi e manuali.
-      </p>
-      <p>
-        <a href="/chi-siamo">La nostra storia</a> · <a href="/giochi-da-tavolo-torino">Ludoteca con oltre 400 giochi da tavolo</a> · <a href="/gioco-di-ruolo-torino">Gioco di ruolo a Torino: i manuali</a>
-      </p>
+    <div class="stack">
+      <div class="card">
+        <h2>Chi siamo</h2>
+        <p>
+          Siamo un luogo di ritrovo per chi ama giocare. Non c'è consumazione minima né quota serale: serve solo la tessera associativa,
+          valida un anno dall'iscrizione. I soci possono anche prendere in prestito giochi e manuali.
+        </p>
+        <p>
+          <a href="/chi-siamo">La nostra storia</a> · <a href="/giochi-da-tavolo-torino">Ludoteca con oltre 400 giochi da tavolo</a> · <a href="/gioco-di-ruolo-torino">Gioco di ruolo a Torino: i manuali</a>
+        </p>
+      </div>
+      <div class="card">
+        <h2>Contatti</h2>
+        <p>
+          Telefono: <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a><br />
+          Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+        </p>
+        <p class="muted">Serate, tavoli e novità li annunciamo sul gruppo Telegram.</p>
+        <TelegramButton />
+      </div>
     </div>
     <div class="card">
       <h2>Quando e dove</h2>
@@ -74,4 +85,5 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 4);
   .tagline { font-family: var(--font-display); font-size: 1.3rem; color: var(--gold); margin: -0.2em 0 1em; }
   .lead { max-width: 640px; margin: 0 auto 24px; color: var(--muted); font-size: 1.1rem; }
   .info { display: grid; gap: 20px; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+  .stack { display: flex; flex-direction: column; gap: 20px; }
 </style>
