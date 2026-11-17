@@ -8,8 +8,8 @@ import site from '../data/site.json';
 import { articlePath } from '../lib/urls';
 
 const byDate = <T extends { data: { date: Date } }>(a: T, b: T) => b.data.date.valueOf() - a.data.date.valueOf();
-const serate = (await getCollection('serate')).sort(byDate).slice(0, 3);
-const news = (await getCollection('news')).sort(byDate).slice(0, 3);
+const serate = (await getCollection('serate')).sort(byDate).slice(0, 4);
+const news = (await getCollection('news')).sort(byDate).slice(0, 4);
 ---
 
 <BaseLayout
