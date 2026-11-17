@@ -1,7 +1,7 @@
 ---
 title: "Serata speciale con Dreamwalkers alla Gilda del Grifone"
 date: 2026-11-14
-cover: "https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_1_ba595077.jpg"
+cover: "https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_7_3370b372.jpg"
 excerpt: "Sabato 14 novembre la Gilda del Grifone ha ospitato una serata di Dreamwalkers con l'autore Andrea Marengo e suo figlio Fabio: ecco com'è andata."
 ---
 
@@ -20,6 +20,9 @@ Al primo tavolo Andrea Marengo ha guidato "Lo Psicodramma": per aiutare la loro 
 *Un momento della narrazione al primo tavolo.*
 
 Al secondo tavolo Fabio Marengo ha diretto "La Prova": una distesa di grano dorato e papaveri blu sotto un cielo rosso sangue ha accolto i personaggi, consapevoli di sognare ma senza memoria di essersi addormentati, tra figure bizzarre e un'ombra che li osservava ponendo una sola domanda: perché siete qui? I giocatori di entrambi i tavoli si sono divertiti a esplorare queste storie oniriche.
+
+![Fabio Marengo in piedi mentre conduce il secondo tavolo, con lo schermo del master di Dreamwalkers](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_1_ba595077.jpg)
+*Fabio Marengo mentre conduce la sessione al secondo tavolo.*
 
 ## Il manuale in sede e i ringraziamenti
 
