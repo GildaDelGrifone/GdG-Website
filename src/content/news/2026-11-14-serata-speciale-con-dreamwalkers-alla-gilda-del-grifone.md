@@ -28,9 +28,6 @@ Andrea e Fabio ci hanno lasciato in regalo una copia del manuale di Dreamwalkers
 ![Andrea Marengo con in mano il manuale di Dreamwalkers – L'Origine dei Mondi](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_4_84dd04a5.jpg)
 *Andrea Marengo con il manuale del gioco.*
 
-![La copertina del manuale di Dreamwalkers – L'Origine dei Mondi](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_5_1676cb46.jpg)
-*Il manuale di Dreamwalkers – L'Origine dei Mondi.*
-
 ![La pagina iniziale del manuale con la dedica manoscritta firmata Master Siré](https://media.gildadelgrifonetorino.it/news/serata-speciale-con-dreamwalkers-alla-gilda-del-grifone/img_6_8d2fc062.jpg)
 *La dedica lasciata da Andrea Marengo per la Gilda del Grifone.*
 
