@@ -18,7 +18,7 @@ npm run check    # controllo tipi (astro check)
 
 | Cosa | Dove |
 |---|---|
-| Contatti, orari, aperture straordinarie (`specialHours`), link Telegram, link CSV della ludoteca | `src/data/site.json` |
+| Contatti, orari, aperture straordinarie (`specialHours`), link Telegram e Instagram, link CSV della ludoteca | `src/data/site.json` |
 | Manuali GdR | `src/data/manuali.json` |
 | Consiglio direttivo e staff | `src/data/chi-siamo.json` |
 | Resoconti serate / News / Collaborazioni | `src/content/{serate,news,collaborazioni}/*.md` |

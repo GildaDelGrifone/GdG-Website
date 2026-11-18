@@ -45,7 +45,7 @@ export function siteSchema(origin: string): Json[] {
           opens: time(s.open),
           closes: time(s.close),
         })),
-      sameAs: [site.telegramUrl],
+      sameAs: [site.telegramUrl, site.instagramUrl].filter(Boolean),
     },
     {
       '@type': 'WebSite',

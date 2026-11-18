@@ -10,6 +10,8 @@ import { articlePath } from '../lib/urls';
 const byDate = <T extends { data: { date: Date } }>(a: T, b: T) => b.data.date.valueOf() - a.data.date.valueOf();
 const serate = (await getCollection('serate')).sort(byDate).slice(0, 4);
 const news = (await getCollection('news')).sort(byDate).slice(0, 4);
+// "@nomeprofilo" ricavato dal link Instagram
+const instagram = site.instagramUrl && `@${site.instagramUrl.replace(/\/+$/, '').split('/').pop()}`;
 ---
 
 <BaseLayout
@@ -46,6 +48,7 @@ const news = (await getCollection('news')).sort(byDate).slice(0, 4);
         <p>
           Telefono: <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a><br />
           Email: <a href={`mailto:${site.email}`}>{site.email}</a>
+          {instagram && <><br />Instagram: <a href={site.instagramUrl} target="_blank" rel="noopener">{instagram}</a></>}
         </p>
         <p class="muted">Serate, tavoli e novità li annunciamo sul gruppo Telegram.</p>
         <TelegramButton />

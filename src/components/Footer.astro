@@ -4,6 +4,8 @@ import OpeningHours from './OpeningHours.astro';
 import TelegramButton from './TelegramButton.astro';
 
 const year = new Date().getFullYear();
+// "@nomeprofilo" ricavato dal link Instagram
+const instagram = site.instagramUrl && `@${site.instagramUrl.replace(/\/+$/, '').split('/').pop()}`;
 ---
 
 <footer class="site-footer">
@@ -15,6 +17,7 @@ const year = new Date().getFullYear();
         <a href={site.mapUrl} rel="noopener">{site.address}</a><br />
         <a href={`mailto:${site.email}`}>{site.email}</a><br />
         <a href={`tel:${site.phone.replace(/\s/g, '')}`}>{site.phone}</a>
+        {instagram && <><br /><a href={site.instagramUrl} target="_blank" rel="noopener">Instagram {instagram}</a></>}
       </p>
       <TelegramButton />
     </div>

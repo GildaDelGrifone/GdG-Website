@@ -107,6 +107,7 @@ collections:
           - { name: address, label: Indirizzo, widget: string }
           - { name: mapUrl, label: Link mappa, widget: string }
           - { name: telegramUrl, label: Link gruppo Telegram, widget: string }
+          - { name: instagramUrl, label: Link profilo Instagram, widget: string, required: false }
           - { name: email, label: Email, widget: string }
           - { name: phone, label: Telefono, widget: string }
           - { name: sheetCsvUrl, label: Link CSV del foglio Google (tab pubblico), widget: string }
