@@ -3,6 +3,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import TelegramButton from '../components/TelegramButton.astro';
 import site from '../data/site.json';
 import team from '../data/chi-siamo.json';
+
+type Persona = { nome: string; telegram?: string };
+
+// Username Telegram salvato senza "@" (lo togliamo comunque se presente)
+const tgHandle = (p: Persona) => p.telegram?.trim().replace(/^@/, '') || undefined;
+const tgUrl = (handle: string) => `https://t.me/${handle}`;
 ---
 
 <BaseLayout
@@ -45,12 +51,18 @@ import team from '../data/chi-siamo.json';
 
     <h2 class="team">Il Consiglio Direttivo</h2>
     <div class="grid">
-      {team.direttivo.map((m) => (
-        <div class="card member">
-          <strong>{m.nome}</strong>
-          <span class="muted">{m.ruolo}</span>
-        </div>
-      ))}
+      {team.direttivo.map((m) => {
+        const tg = tgHandle(m);
+        return (
+          <div class="card member">
+            <strong>{m.nome}</strong>
+            <span class="muted">{m.ruolo}</span>
+            {tg && (
+              <a class="tg" href={tgUrl(tg)} target="_blank" rel="noopener" aria-label={`Telegram di ${m.nome}: @${tg}`}>@{tg}</a>
+            )}
+          </div>
+        );
+      })}
     </div>
 
     <h2 class="team">Lo staff della Gilda</h2>
@@ -59,7 +71,14 @@ import team from '../data/chi-siamo.json';
       tutte le attività insieme al direttivo.
     </p>
     <ul class="staff">
-      {team.staff.map((n) => <li class="tag">{n}</li>)}
+      {team.staff.map((p: Persona) => {
+        const tg = tgHandle(p);
+        return tg ? (
+          <li><a class="tag" href={tgUrl(tg)} target="_blank" rel="noopener" aria-label={`${p.nome} su Telegram (@${tg})`}>{p.nome}</a></li>
+        ) : (
+          <li class="tag">{p.nome}</li>
+        );
+      })}
     </ul>
 
     <div class="card join">
@@ -75,6 +94,10 @@ import team from '../data/chi-siamo.json';
   .team { margin-top: 48px; }
   .member { display: flex; flex-direction: column; gap: 4px; }
   .staff { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; padding: 0; margin: 12px 0 0; }
-  .tag { padding: 4px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  .tg { font-size: 0.9rem; text-decoration: none; }
+  .tg:hover { text-decoration: underline; }
+  .tag { display: inline-block; padding: 4px 14px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+  a.tag { text-decoration: none; color: var(--gold); }
+  a.tag:hover { border-color: var(--gold); color: var(--gold-soft); }
   .join { margin-top: 48px; }
 </style>

@@ -2,27 +2,41 @@
   "direttivo": [
     {
       "nome": "Marco Pardini",
-      "ruolo": "Presidente"
+      "ruolo": "Presidente",
+      "telegram": "MarcoTorx"
     },
     {
       "nome": "Rosa Maria Chiale",
-      "ruolo": "Vicepresidente"
+      "ruolo": "Vicepresidente",
+      "telegram": "RMKtapody"
     },
     {
       "nome": "Valentin Popescu",
-      "ruolo": "Segretario"
+      "ruolo": "Segretario",
+      "telegram": "Destard"
     },
     {
       "nome": "Raffaele Giove",
-      "ruolo": "Tesoriere"
+      "ruolo": "Tesoriere",
+      "telegram": "blitzbergpop"
     },
     {
       "nome": "Massimiliano Bonelli",
-      "ruolo": "Consigliere"
+      "ruolo": "Consigliere",
+      "telegram": "Big_Borzof"
     }
   ],
   "staff": [
-    "Stefano Cestari",
-    "Manuele Cometto"
+    {
+      "nome": "Stefano Cestari",
+      "telegram": "steucestari"
+    },
+    {
+      "nome": "Alberto Colombatto",
+      "telegram": "Alberyc"
+    },
+    {
+      "nome": "Manuele Cometto"
+    }
   ]
 }

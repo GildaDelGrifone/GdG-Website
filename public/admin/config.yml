@@ -90,10 +90,13 @@ collections:
             fields:
               - { name: nome, label: Nome, widget: string }
               - { name: ruolo, label: Ruolo, widget: string }
+              - { name: telegram, label: 'Username Telegram (senza @)', widget: string, required: false }
           - name: staff
             label: Staff
             widget: list
-            field: { name: nome, label: Nome, widget: string }
+            fields:
+              - { name: nome, label: Nome, widget: string }
+              - { name: telegram, label: 'Username Telegram (senza @)', widget: string, required: false }
       - name: impostazioni
         label: Impostazioni (contatti, Telegram, orari)
         file: src/data/site.json
