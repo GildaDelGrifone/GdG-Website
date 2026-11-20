@@ -18,8 +18,8 @@ npm run check    # controllo tipi (astro check)
 
 | Cosa | Dove |
 |---|---|
-| Contatti, orari, aperture straordinarie (`specialHours`), link Telegram e Instagram, link CSV della ludoteca | `src/data/site.json` |
-| Manuali GdR | `src/data/manuali.json` |
+| Contatti, orari, aperture straordinarie (`specialHours`), link Telegram e Instagram, link CSV della ludoteca e del catalogo GdR | `src/data/site.json` |
+| Catalogo GdR (manuali) | Google Sheet, tab **ElencoPubblico** (`site.json` → `gdrCsvUrl`) |
 | Consiglio direttivo e staff | `src/data/chi-siamo.json` |
 | Resoconti serate / News / Collaborazioni | `src/content/{serate,news,collaborazioni}/*.md` |
 | Schema dei contenuti | `src/content.config.ts` |
@@ -52,6 +52,26 @@ La pagina `/giochi-da-tavolo-torino` legge il CSV pubblicato del tab **Elenco Pu
 `ID, TITOLO, CATEGORIA, DESCRIZIONE, ARMADIO, STATUS`. Se il foglio non è raggiungibile usa lo snapshot `/games.json`, generato a ogni build.
 
 **Non pubblicare mai il tab con i dati dei soci** (nome, telefono, mail): un CSV pubblicato è leggibile da chiunque abbia il link.
+
+## Catalogo GdR (Google Sheet + foto)
+
+La pagina `/gioco-di-ruolo-torino` legge il CSV pubblicato del tab **ElencoPubblico** del foglio "Catalogo GdR" (URL in `site.json` → `gdrCsvUrl`)
+e usa solo le colonne `Sistema, Manuale/Prodotto, Tipo, Editore, Lingua, Edizione, Copie, File foto`. `ID` (non stabile) e `Note` (appunti interni) non vengono pubblicate.
+Le righe restano nell'ordine del foglio. Se il foglio non è raggiungibile la pagina usa lo snapshot `/gdr.json`, generato a ogni build.
+
+Ogni prodotto mostra la prima foto della colonna `File foto`, presa dal bucket R2 in `gdr/thumb/<slug>.webp` (anteprima, 400 px)
+e `gdr/<slug>.webp` (foto ingrandita, max 1200 px). Lo slug è il nome del file senza accenti, minuscolo, con i trattini (`src/scripts/photo-slug.js`).
+Se una foto manca su R2 la scheda mostra un riquadro vuoto.
+
+Per aggiungere o aggiornare le foto (le originali vanno in una cartella locale, ad esempio `.sandbox/GdR_Photos/`, ignorata da git):
+
+```sh
+npm run media:photos -- --csv "<URL del CSV o file .csv>" --src .sandbox/GdR_Photos --dest gdr   # crea le WebP in public/uploads/gdr/
+npm run media:sync                                                                                # le carica su R2
+```
+
+Lo script salta le foto già convertite (`--force` per rifarle), si ferma se due foto danno lo stesso slug ed elenca quelle che non trova.
+Funziona con qualsiasi catalogo che abbia una colonna di nomi di foto (`--column`, default `File foto`): servirà anche per le foto della ludoteca.
 
 ## Importare i vecchi post
 

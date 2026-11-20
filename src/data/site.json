@@ -9,6 +9,7 @@
   "email": "lagildadelgrifonetorino@gmail.com",
   "phone": "+39 348 225 4641",
   "sheetCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vTNjSPNsr6l2a4gD2xDU-AnHnXuaggBUCOGO2XXpjBspmeMByCfZMMk8kfe5ZMDBFhOHXw55SWuZx77/pub?gid=1602092043&single=true&output=csv",
+  "gdrCsvUrl": "https://docs.google.com/spreadsheets/d/e/2PACX-1vQGcY8im7OEwnpna-h3MYWxK2RdbOraKbJXJ_5RjzhvYULtUDfEOH03XprYLgfU8XzNqVI1wyWjPbcO/pub?gid=442292991&single=true&output=csv",
   "hours": [
     { "day": 1, "label": "Lunedì", "open": "20:45", "close": "24:00" },
     { "day": 2, "label": "Martedì", "closed": true },

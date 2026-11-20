@@ -6,3 +6,5 @@ dist/
 .bucketkey
 # Immagini: vivono nel bucket R2, non nel repo
 public/uploads/
+# Materiale di lavoro locale (catalogo, foto originali)
+.sandbox/

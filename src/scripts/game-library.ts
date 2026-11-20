@@ -1,4 +1,5 @@
 import Papa from 'papaparse';
+import { loadSheet, norm } from './sheet';
 
 export interface Game {
   id: string;
@@ -29,16 +30,8 @@ export function parseGames(csv: string): Game[] {
     .filter((g) => g.titolo);
 }
 
-export async function loadGames(url: string, snapshotUrl: string): Promise<Game[]> {
-  try {
-    const res = await fetch(url);
-    if (!res.ok) throw new Error(`HTTP ${res.status}`);
-    return parseGames(await res.text());
-  } catch {
-    const res = await fetch(snapshotUrl);
-    if (!res.ok) throw new Error(`Snapshot HTTP ${res.status}`);
-    return (await res.json()) as Game[];
-  }
+export function loadGames(url: string, snapshotUrl: string): Promise<Game[]> {
+  return loadSheet(url, snapshotUrl, parseGames);
 }
 
 export interface Filters {
@@ -47,8 +40,6 @@ export interface Filters {
   armadio: string;
   soloDisponibili: boolean;
 }
-
-const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
 
 export function filterGames(games: Game[], f: Filters): Game[] {
   const q = norm(f.query.trim());

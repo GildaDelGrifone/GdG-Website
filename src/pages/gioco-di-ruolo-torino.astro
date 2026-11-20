@@ -1,9 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import TelegramButton from '../components/TelegramButton.astro';
-import manuali from '../data/manuali.json';
-
-const total = manuali.reduce((n, s) => n + s.titoli.length, 0);
+import site from '../data/site.json';
+import { TIPI } from '../scripts/rpg-library';
 ---
 
 <BaseLayout
@@ -24,48 +23,166 @@ const total = manuali.reduce((n, s) => n + s.titoli.length, 0);
       <TelegramButton />
     </div>
 
-    <h2 class="lib">Biblioteca dei manuali</h2>
-    <p class="muted">{manuali.length} sistemi, {total} titoli. I soci possono leggerli in sede o prenderli in prestito per due settimane.</p>
+    <p class="label">Biblioteca</p>
+    <h2 class="lib">Catalogo dei manuali</h2>
+    <p class="muted">
+      <span id="totals"></span>I soci possono leggerli in sede o prenderli in prestito per due settimane.
+    </p>
 
-    <input type="search" id="q" placeholder="Cerca un sistema o un manuale…" aria-label="Cerca un manuale" />
-    <p id="empty" class="muted" hidden>Nessun risultato.</p>
+    <form class="filters" id="filters" role="search">
+      <input type="search" id="q" placeholder="Cerca un sistema, un manuale o un editore…" aria-label="Cerca un manuale" />
+      <select id="sistema" aria-label="Sistema"><option value="">Tutti i sistemi</option></select>
+      <select id="tipo" aria-label="Tipo">
+        <option value="">Tutti i tipi</option>
+        {TIPI.map((t) => <option value={t}>{t}</option>)}
+      </select>
+      <select id="lingua" aria-label="Lingua">
+        <option value="">Tutte le lingue</option>
+        <option value="IT">Italiano</option>
+        <option value="EN">Inglese</option>
+      </select>
+    </form>
 
-    <div class="systems">
-      {manuali.map((s) => (
-        <details class="card system" data-text={`${s.sistema} ${s.titoli.join(' ')}`}>
-          <summary><strong>{s.sistema}</strong> <span class="muted">({s.titoli.length})</span></summary>
-          <ul>{s.titoli.map((t) => <li>{t}</li>)}</ul>
-        </details>
-      ))}
-    </div>
+    <p id="count" class="muted" aria-live="polite">Caricamento del catalogo…</p>
+    <div id="list" class="grid"></div>
+    <p id="error" class="muted" hidden>Non riusciamo a caricare il catalogo dei manuali. Riprova più tardi.</p>
   </div>
+
+  <dialog id="viewer" aria-label="Foto del manuale">
+    <img id="viewer-img" alt="" />
+    <p id="viewer-title"></p>
+  </dialog>
 </BaseLayout>
 
 <style>
   .how { margin: 16px 0 40px; }
+  .label { margin: 0 0 4px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
   .lib { margin-top: 0; }
-  #q { width: 100%; max-width: 420px; margin: 8px 0 20px; }
-  .systems { display: grid; gap: 12px; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); align-items: start; }
-  .system { padding: 12px 16px; }
-  summary { cursor: pointer; }
-  ul { margin: 12px 0 0; padding-left: 1.2em; }
+  .filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; align-items: center; }
+  #q { flex: 1 1 220px; }
+  #sistema { max-width: 100%; }
+
+  dialog { padding: 0; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); color: var(--text); max-width: min(92vw, 720px); cursor: zoom-out; }
+  dialog::backdrop { background: rgb(0 0 0 / 0.8); }
+  dialog img { max-height: 80vh; width: auto; margin: 0 auto; }
+  dialog p { margin: 0; padding: 10px 16px; text-align: center; }
 </style>
 
-<script>
-  const norm = (s: string) => s.normalize('NFD').replace(/\p{M}/gu, '').toLowerCase();
-  const input = document.getElementById('q') as HTMLInputElement;
-  const empty = document.getElementById('empty')!;
-  const systems = [...document.querySelectorAll<HTMLDetailsElement>('.system')];
+<style is:global>
+  .rpg { padding: 0; overflow: hidden; display: flex; flex-direction: column; }
+  .rpg .photo { display: block; width: 100%; padding: 0; border: 0; background: var(--surface-2); cursor: zoom-in; }
+  .rpg .photo img, .rpg .nophoto { width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+  .rpg .nophoto { background: var(--surface-2); }
+  .rpg .body { padding: 14px 16px 16px; }
+  .rpg .sys { margin: 0 0 4px; color: var(--gold); font-size: 0.8rem; font-weight: 700; }
+  .rpg h3 { font-size: 1.05rem; margin: 0 0 10px; }
+  .rpg .tags { display: flex; flex-wrap: wrap; gap: 6px; font-size: 0.75rem; }
+  .rpg .tag { padding: 2px 10px; border-radius: 999px; border: 1px solid var(--border); color: var(--muted); }
+</style>
 
-  input.addEventListener('input', () => {
-    const q = norm(input.value.trim());
-    let visible = 0;
-    systems.forEach((d) => {
-      const match = !q || norm(d.dataset.text ?? '').includes(q);
-      d.hidden = !match;
-      d.open = !!q && match;
-      if (match) visible++;
+<script define:vars={{ sheetUrl: site.gdrCsvUrl }}>
+  window.__gdrUrl = sheetUrl;
+</script>
+
+<script>
+  import { loadManuali, filterManuali, photoUrl, type Manuale } from '../scripts/rpg-library';
+
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const list = $('list');
+  const count = $('count');
+  const viewer = $<HTMLDialogElement>('viewer');
+  const PAGE = 60;
+  let manuali: Manuale[] = [];
+  let shown = PAGE;
+  let results: Manuale[] = [];
+
+  const el = (tag: string, cls?: string, text?: string) => {
+    const e = document.createElement(tag);
+    if (cls) e.className = cls;
+    if (text !== undefined) e.textContent = text;
+    return e;
+  };
+
+  function photo(m: Manuale) {
+    if (!m.foto) return el('div', 'nophoto');
+    const btn = el('button', 'photo') as HTMLButtonElement;
+    btn.type = 'button';
+    btn.setAttribute('aria-label', `Ingrandisci la foto di ${m.titolo}`);
+    const img = el('img') as HTMLImageElement;
+    img.src = photoUrl(m.foto, 'thumb');
+    img.alt = m.titolo;
+    img.loading = 'lazy';
+    img.decoding = 'async';
+    img.width = 400;
+    img.height = 533;
+    // Foto non ancora caricata su R2: al suo posto un riquadro vuoto
+    img.addEventListener('error', () => btn.replaceWith(el('div', 'nophoto')));
+    btn.append(img);
+    btn.addEventListener('click', () => {
+      $<HTMLImageElement>('viewer-img').src = photoUrl(m.foto, 'full');
+      $<HTMLImageElement>('viewer-img').alt = m.titolo;
+      $('viewer-title').textContent = m.titolo;
+      viewer.showModal();
     });
-    empty.hidden = visible > 0;
-  });
+    return btn;
+  }
+
+  function render() {
+    list.replaceChildren(
+      ...results.slice(0, shown).map((m) => {
+        const card = el('article', 'card rpg');
+        card.append(photo(m));
+        const body = el('div', 'body');
+        body.append(el('p', 'sys', m.sistema), el('h3', undefined, m.titolo));
+        const tags = el('div', 'tags');
+        for (const t of [m.tipo, m.lingua, m.edizione, m.editore]) if (t) tags.append(el('span', 'tag', t));
+        if (m.copie > 1) tags.append(el('span', 'tag', `${m.copie} copie`));
+        body.append(tags);
+        card.append(body);
+        return card;
+      }),
+    );
+    count.textContent = `${results.length} ${results.length === 1 ? 'prodotto' : 'prodotti'}`;
+    if (results.length > shown) {
+      const more = el('button', 'btn', 'Mostra altri');
+      more.addEventListener('click', () => { shown += PAGE; render(); });
+      const wrap = el('div');
+      wrap.append(more);
+      list.append(wrap);
+    }
+  }
+
+  function update() {
+    shown = PAGE;
+    results = filterManuali(manuali, {
+      query: $<HTMLInputElement>('q').value,
+      sistema: $<HTMLSelectElement>('sistema').value,
+      tipo: $<HTMLSelectElement>('tipo').value,
+      lingua: $<HTMLSelectElement>('lingua').value,
+    });
+    render();
+  }
+
+  $('filters').addEventListener('submit', (e) => e.preventDefault());
+  $('filters').addEventListener('input', update);
+  viewer.addEventListener('click', () => viewer.close());
+
+  loadManuali((window as unknown as { __gdrUrl: string }).__gdrUrl, '/gdr.json')
+    .then((m) => {
+      manuali = m;
+      // Sistemi nell'ordine del foglio (le edizioni restano in ordine cronologico)
+      const sistemi = [...new Set(m.map((x) => x.sistema))];
+      const select = $<HTMLSelectElement>('sistema');
+      sistemi.forEach((s) => {
+        const o = el('option', undefined, s) as HTMLOptionElement;
+        o.value = s;
+        select.append(o);
+      });
+      $('totals').textContent = `${m.length} prodotti di ${sistemi.length} sistemi. `;
+      update();
+    })
+    .catch(() => {
+      count.hidden = true;
+      $('error').hidden = false;
+    });
 </script>

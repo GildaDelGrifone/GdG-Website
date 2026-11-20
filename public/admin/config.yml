@@ -69,17 +69,6 @@ collections:
   - name: dati
     label: Dati del sito
     files:
-      - name: manuali
-        label: Manuali di gioco di ruolo
-        file: src/data/manuali.json
-        fields:
-          - name: sistemi
-            label: Sistemi
-            widget: list
-            root: true
-            fields:
-              - { name: sistema, label: Sistema, widget: string }
-              - { name: titoli, label: Titoli, widget: list, field: { name: titolo, label: Titolo, widget: string } }
       - name: chi-siamo
         label: Chi siamo (direttivo e staff)
         file: src/data/chi-siamo.json

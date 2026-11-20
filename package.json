@@ -9,6 +9,7 @@
     "check": "astro check",
     "import:wp": "node scripts/import-wp.mjs",
     "media:sync": "bash scripts/sync-media.sh",
+    "media:photos": "node scripts/photos.mjs",
     "preview": "astro preview"
   },
   "dependencies": {
