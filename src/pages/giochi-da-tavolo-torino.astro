@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import TelegramButton from '../components/TelegramButton.astro';
 import site from '../data/site.json';
 ---
 
@@ -10,8 +11,22 @@ import site from '../data/site.json';
   <div class="container section">
     <p class="label">Ludoteca</p>
     <h1>Giochi da tavolo a Torino</h1>
+
+    <div class="card how">
+      <h2>Come si gioca</h2>
+      <p>
+        I tavoli si organizzano sul nostro gruppo Telegram: sotto ogni gioco proposto trovi il pulsante
+        <strong>➕ Prenota</strong> per riservare un posto e <strong>➖ Annulla</strong> per liberarlo. Se il tavolo è pieno,
+        con <strong>⏳ Lista d'attesa</strong> ti metti in coda e il bot ti prenota appena si libera un posto.
+        Puoi anche proporre tu un tavolo nel gruppo, con un gioco della ludoteca o con uno della tua collezione da portare in sede.
+        Non c'è quota serale: serve solo la tessera associativa.
+      </p>
+      <TelegramButton />
+    </div>
+
+    <h2 class="lib">Catalogo dei giochi</h2>
     <p class="muted">
-      Oltre 400 giochi a disposizione dei soci. Puoi giocarli in sede o prenderli in prestito.
+      <span id="totals"></span>I soci possono giocarli in sede o prenderli in prestito.
     </p>
 
     <form class="filters" id="filters" role="search">
@@ -28,6 +43,8 @@ import site from '../data/site.json';
 </BaseLayout>
 
 <style>
+  .how { margin: 16px 0 40px; }
+  .lib { margin-top: 0; }
   .label { margin: 0 0 4px; color: var(--gold); font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.8rem; }
   .filters { display: flex; flex-wrap: wrap; gap: 12px; margin: 24px 0 8px; align-items: center; }
   #q { flex: 1 1 220px; }
@@ -116,6 +133,8 @@ import site from '../data/site.json';
   loadGames((window as unknown as { __sheetUrl: string }).__sheetUrl, '/games.json')
     .then((g) => {
       games = g;
+      const disponibili = g.filter((x) => x.disponibile).length;
+      $('totals').textContent = `${g.length} giochi, ${disponibili} disponibili in questo momento. `;
       fillSelect('categoria', g.map((x) => x.categoria));
       fillSelect('armadio', g.map((x) => x.armadio));
       update();
