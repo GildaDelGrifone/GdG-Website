@@ -35,7 +35,8 @@ npm run check    # controllo tipi (astro check)
 I file in `src/content/serate/` si chiamano `AAAA-MM-GG-titolo.md` (la data li tiene in ordine), ma l'indirizzo della pagina **non** contiene la data:
 `src/content/serate/2026-10-28-eventi-della-serata-mercoledi-28-10-2026.md` → `/serate/eventi-della-serata-mercoledi-28-10-2026/`.
 Lo stesso vale per le news (`/news/<titolo>/`). Due articoli con lo stesso titolo nella stessa raccolta fanno fallire la build, così non se ne perde nessuno.
-I vecchi indirizzi di WordPress non vengono reindirizzati: le pagine principali (`/chi-siamo/`, `/gioco-di-ruolo-torino/`, `/giochi-da-tavolo-torino/`, `/news/`) hanno lo stesso indirizzo di prima.
+I vecchi indirizzi di WordPress non vengono reindirizzati: le pagine principali (`/chi-siamo/`, `/giochi-da-tavolo-torino/`, `/news/`) hanno lo stesso indirizzo di prima.
+La pagina del gioco di ruolo è passata da `/gioco-di-ruolo-torino/` a `/giochi-di-ruolo-torino/`: il vecchio indirizzo ha un redirect 301 in `public/_redirects`.
 
 ## SEO
 
@@ -55,7 +56,7 @@ La pagina `/giochi-da-tavolo-torino` legge il CSV pubblicato del tab **Elenco Pu
 
 ## Catalogo GdR (Google Sheet + foto)
 
-La pagina `/gioco-di-ruolo-torino` legge il CSV pubblicato del tab **ElencoPubblico** del foglio "Catalogo GdR" (URL in `site.json` → `gdrCsvUrl`)
+La pagina `/giochi-di-ruolo-torino` legge il CSV pubblicato del tab **ElencoPubblico** del foglio "Catalogo GdR" (URL in `site.json` → `gdrCsvUrl`)
 e usa solo le colonne `Sistema, Manuale/Prodotto, Tipo, Editore, Lingua, Edizione, Copie, File foto`. `ID` (non stabile) e `Note` (appunti interni) non vengono pubblicate.
 Le righe restano nell'ordine del foglio. Se il foglio non è raggiungibile la pagina usa lo snapshot `/gdr.json`, generato a ogni build.
 
