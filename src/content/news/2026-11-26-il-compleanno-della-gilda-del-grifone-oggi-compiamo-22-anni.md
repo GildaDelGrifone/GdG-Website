@@ -13,7 +13,7 @@ Vogliamo dirvi grazie con tutto il cuore. Ventidue anni di vita insieme sono pos
 
 ## Un grazie sincero ai vecchi direttivi
 
-Questo compleanno è anche il momento giusto per rivolgere un pensiero riconoscente a tutti coloro che nel corso del tempo hanno fatto parte dei vecchi direttivi. Mandare avanti un'associazione richiede tempo, cura e tanta dedizione: se oggi la Gilda è quello che è, uno spazio accogliente e aperto a chiunque ami giocare, lo dobbiamo a ciascuno di voi che negli anni vi siete rimboccati le maniche e avete dato una mano a costruire questo posto giorno dopo giorno.
+Questo compleanno è anche il momento giusto per rivolgere un pensiero riconoscente a tutti coloro che nel corso del tempo hanno fatto parte dei vecchi direttivi. Mandare avanti un'associazione richiede tempo, cura e tanta dedizione: se oggi la Gilda è quello che è, uno spazio accogliente e aperto a chiunque ami giocare, lo dobbiamo a tutti voi che negli anni vi siete rimboccati le maniche e avete dato una mano a costruire questo posto giorno dopo giorno.
 
 ---
 
