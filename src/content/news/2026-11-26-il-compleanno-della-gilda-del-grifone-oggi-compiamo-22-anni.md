@@ -1,20 +1,20 @@
 ---
-title: "Il compleanno della Gilda del Grifone: oggi compiamo 22 anni"
+title: "22 anni di Gilda del Grifone: buon compleanno a tutti noi"
 date: 2026-11-26
 cover: "https://media.gildadelgrifonetorino.it/news/il-compleanno-della-gilda-del-grifone-oggi-compiamo-22-anni/img_1_ed4b0f11.jpg"
-excerpt: "Nata il 26 novembre 2004, la Gilda del Grifone compie oggi 22 anni. Un grazie a tutti coloro che ne hanno fatto parte nel corso del tempo."
+excerpt: "Il 26 novembre 2004 nasceva la Gilda del Grifone: oggi compiamo 22 anni. Un grazie di cuore a tutta la nostra community e ai vecchi direttivi."
 ---
 
-Oggi, **26 novembre**, è il compleanno della **Gilda del Grifone**. L'associazione è nata in questo giorno nel **2004** e oggi compie 22 anni: volevamo farvelo sapere e cogliere l'occasione per ringraziarvi tutti.
+Oggi, **26 novembre**, è un giorno davvero speciale per tutti noi: la **Gilda del Grifone** compie 22 anni! Era proprio il **26 novembre 2004** quando è nata la nostra associazione, e ritrovarci qui oggi a tagliare questo traguardo è un'emozione grandissima che vogliamo condividere con ciascuno di voi.
 
-## Grazie a tutta la community
+## Ventidue anni insieme a voi
 
-Vogliamo ringraziare chiunque abbia fatto parte della Gilda nel corso degli anni: da chi ci è passato anche solo per una volta a chi, serata dopo serata, ne ha fatto una seconda casa. Siete voi che date vita a questo spazio ogni volta che vi sedete a giocare.
+Vogliamo dirvi grazie con tutto il cuore. Ventidue anni di vita insieme sono possibili solo grazie alle persone che varcano la nostra porta: grazie a chi è passato anche solo per una sera a fare una partita, lasciando comunque un pezzo del proprio entusiasmo, e grazie a chi, settimana dopo settimana, ha scelto di fare della Gilda la propria seconda casa. Siete voi a dare un senso a quello che facciamo, riempiendo i tavoli di risate, storie e voglia di stare insieme.
 
-## Un ringraziamento ai vecchi direttivi
+## Un grazie sincero ai vecchi direttivi
 
-Volevamo anche ringraziare tutti coloro che hanno fatto parte dei vecchi direttivi nel corso del tempo. È grazie a chi ha dato una mano e si è impegnato negli anni che questo posto è diventato quello che è al giorno d'oggi.
+Questo compleanno è anche il momento giusto per rivolgere un pensiero riconoscente a tutti coloro che nel corso del tempo hanno fatto parte dei vecchi direttivi. Mandare avanti un'associazione richiede tempo, cura e tanta dedizione: se oggi la Gilda è quello che è, uno spazio accogliente e aperto a chiunque ami giocare, lo dobbiamo a ciascuno di voi che negli anni vi siete rimboccati le maniche e avete dato una mano a costruire questo posto giorno dopo giorno.
 
 ---
 
-Se avete voglia di fare una partita, la sede della Gilda in **Via Ada Negri 8/A** a Torino vi aspetta il lunedì, il mercoledì e il venerdì dalle 20:45 alle 24:00. Per restare in contatto con noi potete unirvi al nostro [gruppo Telegram](https://t.me/+U5NEyDvN_fMxZTQ0). A presto attorno a un tavolo! 🦅
+Se avete voglia di venire a giocare e fare due chiacchiere, la nostra sede in **Via Ada Negri 8/A** a Torino vi aspetta il lunedì, il mercoledì e il venerdì dalle 20:45 alle 24:00. Per salutarci e restare in contatto potete sempre entrare nel nostro [gruppo Telegram](https://t.me/+U5NEyDvN_fMxZTQ0). Buon compleanno alla Gilda e tantissimi auguri a tutti noi Grifoni! 🦅
